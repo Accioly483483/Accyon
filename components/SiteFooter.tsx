@@ -57,8 +57,7 @@ export function SiteFooter() {
             Toda operação tem uma ordem. Nós encontramos a sua.
           </p>
           <p className="mono mt-6 text-legenda text-ink-2">
-            {/* NAP: preencher com dados reais quando disponíveis */}
-            Accyon · Brasil · contato@accyon.com.br
+            Accyon · CNPJ 66.008.856/0001-11 · Brasil · accioly483@gmail.com
           </p>
         </div>
       </div>

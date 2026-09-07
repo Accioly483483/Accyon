@@ -15,9 +15,8 @@ export const metadata: Metadata = {
   },
 };
 
-// TODO: substituir WHATSAPP e EMAIL pelos dados reais antes do launch.
-const WHATSAPP_URL = "https://wa.me/5500000000000";
-const EMAIL = "contato@accyon.com.br";
+const WHATSAPP_URL = "https://wa.me/5521979700821";
+const EMAIL = "accioly483@gmail.com";
 
 export default function Contato() {
   return (

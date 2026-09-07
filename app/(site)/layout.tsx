@@ -1,7 +1,7 @@
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { JsonLd } from "@/components/JsonLd";
-import { graph, organizationNode, websiteNode } from "@/lib/schema";
+import { graph, organizationNode, websiteNode, personNode } from "@/lib/schema";
 
 export default function SiteLayout({
   children,
@@ -10,7 +10,7 @@ export default function SiteLayout({
 }) {
   return (
     <>
-      <JsonLd data={graph([organizationNode(), websiteNode()])} />
+      <JsonLd data={graph([organizationNode(), websiteNode(), personNode()])} />
       <SiteHeader />
       <main>{children}</main>
       <SiteFooter />

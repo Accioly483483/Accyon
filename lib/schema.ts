@@ -4,6 +4,7 @@ import type { Verbete } from "@/content/glossario";
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://accyon.com.br";
 export const ORG_ID = `${SITE}/#organizacao`;
 export const SITE_ID = `${SITE}/#website`;
+export const PERSON_ID = `${SITE}/#pessoa-fundador`;
 
 const url = (path = "") => `${SITE}${path}`;
 
@@ -25,8 +26,7 @@ const KNOWS_ABOUT = [
   "API oficial do WhatsApp Business",
 ];
 
-// TODO: adicionar sameAs (LinkedIn, Instagram, Crunchbase) e founder Person
-// quando os dados reais existirem. Sem inventar URL.
+// TODO: adicionar sameAs (LinkedIn, Instagram) quando as URLs existirem.
 export function organizationNode() {
   return {
     "@type": "Organization",
@@ -35,8 +35,28 @@ export function organizationNode() {
     url: url("/"),
     description:
       "Consultoria de infraestrutura operacional e comercial para pequenas e médias empresas: organiza processos, conecta sistemas, automatiza tarefas e entrega dashboards.",
+    email: "accioly483@gmail.com",
+    telephone: "+55 21 97970-0821",
+    taxID: "66.008.856/0001-11",
     areaServed: { "@type": "Country", name: "Brasil" },
     knowsAbout: KNOWS_ABOUT,
+    founder: { "@id": PERSON_ID },
+  };
+}
+
+export function personNode() {
+  return {
+    "@type": "Person",
+    "@id": PERSON_ID,
+    name: "Matheus A.",
+    jobTitle: "Gestor de Automações",
+    worksFor: { "@id": ORG_ID },
+    knowsAbout: [
+      "Automação de processos",
+      "Integração de sistemas",
+      "RevOps",
+      "Inteligência artificial aplicada a operações",
+    ],
   };
 }
 

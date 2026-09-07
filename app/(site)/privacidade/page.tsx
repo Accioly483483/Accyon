@@ -10,11 +10,9 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-// TODO antes do launch: preencher CNPJ, endereço e e-mail do encarregado (DPO).
-// Recomendável revisão jurídica deste texto.
-const CNPJ = "{{CNPJ}}";
-const ENDERECO = "{{endereço completo}}";
-const EMAIL_ENCARREGADO = "{{e-mail do encarregado de dados}}";
+// Dados confirmados pelo titular. Recomendável revisão jurídica do texto.
+const CNPJ = "66.008.856/0001-11";
+const EMAIL_ENCARREGADO = "accioly483@gmail.com";
 const ATUALIZADO_EM = "7 de setembro de 2026";
 
 function Bloco({ n, titulo, children }: { n: string; titulo: string; children: React.ReactNode }) {
@@ -47,8 +45,8 @@ export default function Privacidade() {
         <Bloco n="01" titulo="Quem é o controlador dos dados">
           <p>
             A Accyon é a controladora dos dados pessoais tratados neste site.
-            Dados de registro: CNPJ {CNPJ}, endereço {ENDERECO}. Contato do
-            encarregado pelo tratamento de dados: {EMAIL_ENCARREGADO}.
+            Dado de registro: CNPJ {CNPJ}. Contato do encarregado pelo
+            tratamento de dados: {EMAIL_ENCARREGADO}.
           </p>
         </Bloco>
 
