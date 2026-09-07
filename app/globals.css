@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Accyon — tokens do Brand Book (LPs · dark, sem modo claro)
+   Fonte: "Accyon Brand Book.dc.html" e o MD de design de LP.
+   ============================================================ */
+
+:root {
+  /* Sistema cromático */
+  --bg: #0b0d10; /* Preto de Painel  */
+  --surface: #0e1216; /* Grafite de Superfície */
+  --ink: #ffffff; /* Branco de Marcação */
+  --ink-2: #8a97a6; /* Cinza de Leitura */
+  --sinal: #0c98de; /* Azul de Sinal — <=5% da tela, 1 destaque por seção */
+  --sinal-hover: #0aa6f0;
+  --paper: #f2f3f5; /* Papel de Cópia — só impresso/doc */
+
+  --line: rgb(255 255 255 / 0.1); /* filete 1px */
+  --line-2: rgb(255 255 255 / 0.16);
+
+  /* Semânticas — derivadas do Azul de Sinal por rotação de matiz */
+  --success: #00a181;
+  --warning: #b5851f;
+  --danger: #d9705f;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --dur-press: 130ms;
+  --dur-fast: 200ms;
+  --dur-modal: 320ms;
+  --dur-reveal: 700ms;
+
+  --maxw: 1200px;
+
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* cantos vivos por padrão — a única exceção é a enclosure aninhada */
+    border-radius: 0;
+  }
+
+  html {
+    background: var(--bg);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-display), "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.125rem; /* corpo 18px */
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+    max-width: 68ch;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: var(--sinal);
+    color: var(--bg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--sinal);
+    outline-offset: 2px;
+  }
+
+  .mono,
+  code,
+  kbd,
+  samp {
+    font-family: var(--font-mono), ui-monospace, Menlo, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  .min-h-screen-safe {
+    min-height: 100vh;
+    min-height: 100dvh; /* respeita o teclado virtual */
+  }
+
+  .container-accyon {
+    width: 100%;
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-accyon {
+      padding-inline: 2rem;
+    }
+  }
+}
+
+@layer utilities {
+  /* revelação por scroll — só transform/opacity/filter */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(8px);
+    transition:
+      opacity var(--dur-reveal) var(--ease-out),
+      transform var(--dur-reveal) var(--ease-out),
+      filter var(--dur-reveal) var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+
+  .press {
+    transition: transform var(--dur-press) var(--ease-out);
+  }
+  .press:active {
+    transform: scale(0.98);
+  }
+}
+
+/* ---- Hero diagram (componente HeroDiagram) ---- */
+.hero-diagram .hd-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  fill: var(--ink-2);
+}
+.hero-diagram .hd-link {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: hd-draw 900ms var(--ease-out) forwards;
+}
+.hero-diagram .hd-node {
+  opacity: 0;
+  transform-box: fill-box;
+  animation: hd-in 600ms var(--ease-out) forwards;
+}
+@keyframes hd-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes hd-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.12s !important;
+  }
+  .reveal {
+    transform: none;
+    filter: none;
+    transition: opacity 0.2s linear;
+  }
+  .hero-diagram .hd-link {
+    stroke-dashoffset: 0;
+  }
+  .hero-diagram .hd-node {
+    opacity: 1;
+  }
+  .hero-diagram .hd-pulse {
+    display: none;
+  }
+}
