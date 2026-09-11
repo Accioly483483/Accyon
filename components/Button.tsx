@@ -23,8 +23,8 @@ type AsButton = CommonProps & {
 };
 
 const base =
-  "press group inline-flex items-center gap-3 border font-mono text-eyebrow uppercase tracking-[0.16em] transition-colors";
-const pad = "px-6 py-4";
+  "press group inline-flex items-center gap-2.5 border font-mono text-[0.7rem] uppercase tracking-[0.08em] transition-colors";
+const pad = "px-4 py-2.5";
 const styles: Record<Variant, string> = {
   primary: "border-sinal bg-sinal text-bg hover:bg-sinal-hover",
   ghost: "border-line-2 bg-transparent text-ink-2 hover:text-ink",
@@ -35,11 +35,11 @@ function Arrow({ variant }: { variant: Variant }) {
     <span
       aria-hidden
       className={clsx(
-        "grid h-7 w-7 place-items-center transition-transform duration-200 ease-out group-hover:translate-x-1",
+        "grid h-5 w-5 flex-none place-items-center transition-transform duration-200 ease-out group-hover:translate-x-1",
         variant === "primary" ? "bg-bg/15" : "bg-surface",
       )}
     >
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <svg width="11" height="11" viewBox="0 0 14 14" fill="none">
         <path d="M2 7h9M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" />
       </svg>
     </span>

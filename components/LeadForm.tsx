@@ -370,7 +370,7 @@ export function LeadForm({
             <button
               type="button"
               onClick={prev}
-              className="press border border-line-2 px-6 py-4 font-mono text-eyebrow uppercase tracking-[0.16em] text-ink-2 transition-colors hover:text-ink"
+              className="press border border-line-2 px-4 py-2.5 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-ink-2 transition-colors hover:text-ink"
             >
               Voltar
             </button>
@@ -379,7 +379,7 @@ export function LeadForm({
             type="button"
             onClick={next}
             disabled={submitting}
-            className="press flex-1 border border-sinal bg-sinal px-6 py-4 font-mono text-eyebrow font-medium uppercase tracking-[0.16em] text-bg transition-colors hover:bg-sinal-hover disabled:opacity-60 sm:flex-none"
+            className="press flex-1 border border-sinal bg-sinal px-4 py-2.5 font-mono text-[0.7rem] font-medium uppercase tracking-[0.08em] text-bg transition-colors hover:bg-sinal-hover disabled:opacity-60 sm:flex-none"
           >
             {step === TOTAL
               ? submitting
