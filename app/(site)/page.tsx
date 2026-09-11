@@ -67,23 +67,23 @@ export default function Home() {
 /* ============================ HERO (§06) ============================ */
 function Hero() {
   return (
-    <section className="relative pb-section pt-6 md:pt-10">
+    <section className="relative pb-8 pt-4 md:pb-10 md:pt-6">
       <Container>
-        <div className="grid items-center gap-12 md:grid-cols-[1.1fr_0.9fr] md:gap-8">
+        <div className="grid items-center gap-8 md:grid-cols-[1.1fr_0.9fr]">
           <div className="max-w-[46rem]">
             <Eyebrow>Infraestrutura operacional e comercial</Eyebrow>
-            <h1 className="mt-6 text-titulo font-medium text-ink">
+            <h1 className="mt-3 text-[clamp(1.625rem,3.2vw,2.5rem)] font-medium leading-[1.08] tracking-[-0.02em] text-ink">
               Sua empresa já funciona. Mas ela pode performar ainda melhor.
             </h1>
-            <p className="mt-6 max-w-measure text-corpo text-ink-2">
+            <p className="mt-3 max-w-measure text-corpo text-ink-2">
               A Accyon encontra onde sua operação perde velocidade e constrói a
               estrutura necessária para conectar pessoas, processos e tecnologia.
             </p>
-            <p className="mt-4 max-w-measure text-corpo text-ink-2">
+            <p className="mt-2 max-w-measure text-corpo text-ink-2">
               Menos trabalho manual. Mais clareza sobre o que acontece. Uma
               operação que não depende de você para cada movimento.
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-5 flex flex-wrap items-center gap-4">
               <OpenLeadModalButton variant="primary" arrow>
                 Solicitar análise da operação
               </OpenLeadModalButton>
@@ -91,7 +91,7 @@ function Hero() {
                 Entender como funciona
               </Button>
             </div>
-            <p className="mono mt-6 text-legenda text-ink-2">
+            <p className="mono mt-3 text-legenda text-ink-2">
               Projetos sob medida · A depender das suas particularidades
             </p>
           </div>
@@ -107,13 +107,15 @@ function Hero() {
 
 /* ========================== PROBLEMA (§07) ========================== */
 const SINAIS = [
-  "Cliente manda mensagem e ninguém sabe quem deveria responder.",
-  "O follow-up fica para depois.",
-  "Uma tarefa precisa ser lembrada.",
-  "A informação está na planilha de alguém.",
-  "A equipe pergunta aquilo que deveria estar claro.",
+  "Não dei a devolutiva no prazo.",
+  "Não realizei o follow-up com o lead.",
+  "Esqueci de avisar a área responsável.",
+  "Esqueci de agendar a reunião / consulta.",
+  "Não lancei a nota.",
+  "Informação não está mais na planilha.",
+  "Os dados não foram atualizados.",
+  "O processo não foi seguido.",
   "Você precisa cobrar para descobrir se algo foi feito.",
-  "“Deixa que eu vejo.”",
 ];
 
 function Problema() {

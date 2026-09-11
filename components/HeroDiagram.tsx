@@ -26,7 +26,7 @@ export function HeroDiagram() {
   return (
     <svg
       viewBox="-84 -12 352 368"
-      className="hero-diagram h-auto w-full max-w-[460px]"
+      className="hero-diagram h-auto w-full max-w-[320px] lg:max-w-[360px]"
       role="img"
       aria-label="Diagrama de uma operação: pessoas, processos, informação, decisão e ação conectados em um fluxo."
     >

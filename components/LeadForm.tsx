@@ -60,10 +60,12 @@ export function LeadForm({
   formSlug,
   servicos = SERVICOS_PADRAO,
   redirectUrl,
+  onStepChange,
 }: {
   formSlug: string;
   servicos?: string[];
   redirectUrl?: string;
+  onStepChange?: (step: number) => void;
 }) {
   const [step, setStep] = useState(1);
   const [data, setData] = useState<FormData>(EMPTY);
@@ -89,6 +91,10 @@ export function LeadForm({
       track("form_start", { formSlug });
     }
   }, [step, formSlug]);
+
+  useEffect(() => {
+    onStepChange?.(step);
+  }, [step, onStepChange]);
 
   useEffect(() => {
     if (step > TOTAL && redirectUrl) {
@@ -213,7 +219,7 @@ export function LeadForm({
 
   return (
     <div>
-      <div className="mb-8">
+      <div className="mb-6">
         <div className="h-0.5 w-full overflow-hidden bg-line">
           <div
             className="h-full bg-sinal transition-[width] duration-500 ease-out"
@@ -351,7 +357,7 @@ export function LeadForm({
           </p>
         )}
 
-        <div className="mt-8 flex gap-3">
+        <div className="mt-6 flex gap-3">
           {step > 1 && (
             <button
               type="button"

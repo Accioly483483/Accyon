@@ -13,6 +13,7 @@ export function useLeadModal() {
 
 export function LeadModalProvider({ children }: { children: React.ReactNode }) {
   const [visible, setVisible] = useState(false);
+  const [formStep, setFormStep] = useState(1);
 
   useEffect(() => {
     document.body.style.overflow = visible ? "hidden" : "";
@@ -31,7 +32,14 @@ export function LeadModalProvider({ children }: { children: React.ReactNode }) {
   }, [visible]);
 
   return (
-    <LeadModalContext.Provider value={{ open: () => setVisible(true) }}>
+    <LeadModalContext.Provider
+      value={{
+        open: () => {
+          setFormStep(1);
+          setVisible(true);
+        },
+      }}
+    >
       {children}
       {visible && (
         <div
@@ -43,7 +51,7 @@ export function LeadModalProvider({ children }: { children: React.ReactNode }) {
             if (e.target === e.currentTarget) setVisible(false);
           }}
         >
-          <div className="relative my-8 w-full max-w-lg border border-line bg-bg p-6 md:p-10">
+          <div className="relative my-4 w-full max-w-lg border border-line bg-bg p-5 md:p-8">
             <button
               type="button"
               aria-label="Fechar"
@@ -54,15 +62,18 @@ export function LeadModalProvider({ children }: { children: React.ReactNode }) {
                 <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.5" />
               </svg>
             </button>
-            <p className="pr-10 text-subtitulo text-ink">
-              Conte um pouco sobre sua operação.
-            </p>
-            <p className="mb-8 mt-3 max-w-measure text-corpo text-ink-2">
-              Não precisamos de uma apresentação formal. Queremos entender onde
-              sua operação está hoje e o que está impedindo seu trabalho de
-              fluir como poderia.
-            </p>
-            <LeadForm formSlug="modal" />
+            {formStep === 1 && (
+              <>
+                <p className="pr-10 text-subtitulo text-ink">
+                  Nos conte um pouco sobre sua operação.
+                </p>
+                <p className="mb-6 mt-3 max-w-measure text-corpo text-ink-2">
+                  Queremos saber um pouquinho melhor sobre você e como sua
+                  estrutura funciona.
+                </p>
+              </>
+            )}
+            <LeadForm formSlug="modal" onStepChange={setFormStep} />
           </div>
         </div>
       )}

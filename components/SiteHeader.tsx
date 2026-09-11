@@ -66,7 +66,7 @@ export function SiteHeader() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-6 lg:flex">
+          <nav className="hidden items-center gap-6 xl:flex">
             {NAV.map((item) => (
               <Link
                 key={item.href}
@@ -78,15 +78,15 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden xl:block">
             <OpenLeadModalButton variant="primary">
-              Solicitar análise
+              Falar sobre minha operação
             </OpenLeadModalButton>
           </div>
 
           <button
             type="button"
-            className="press grid h-10 w-10 place-items-center lg:hidden"
+            className="press grid h-10 w-10 place-items-center xl:hidden"
             aria-label={open ? "Fechar menu" : "Abrir menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
@@ -118,7 +118,7 @@ export function SiteHeader() {
       {/* overlay mobile */}
       <div
         className={clsx(
-          "fixed inset-0 z-30 bg-bg/95 backdrop-blur transition-opacity duration-300 lg:hidden",
+          "fixed inset-0 z-30 bg-bg/95 backdrop-blur transition-opacity duration-300 xl:hidden",
           open ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       >
@@ -140,7 +140,7 @@ export function SiteHeader() {
           ))}
           <div className="mt-4" onClickCapture={() => setOpen(false)}>
             <OpenLeadModalButton variant="primary" arrow>
-              Solicitar análise
+              Falar sobre minha operação
             </OpenLeadModalButton>
           </div>
         </nav>
