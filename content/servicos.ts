@@ -31,7 +31,8 @@ export interface ServiceCopy {
 export const SERVICOS: ServiceCopy[] = [
   {
     slug: "infraestrutura-comercial",
-    resumo: "Do primeiro contato ao fechamento: captação, CRM, follow-up e painel.",
+    resumo:
+      "Chegada do lead/cliente → captação → CRM → primeiro contato → fluxo de comunicação (WhatsApp + e-mail) → venda / agendamento / solicitação realizada → painel de resultados → finalização da demanda.",
     nav: "Infraestrutura comercial",
     title: "Infraestrutura comercial estruturada para PMEs | Accyon",
     description:
@@ -84,7 +85,8 @@ export const SERVICOS: ServiceCopy[] = [
 
   {
     slug: "sistemas",
-    resumo: "O software feito para o seu processo, quando a planilha não dá mais conta.",
+    resumo:
+      "Softwares feitos sob medida para o seu processo, com a finalidade de facilitar tarefas e resolver demandas.",
     nav: "Construção de sistemas",
     title: "Construção de sistemas sob medida para empresas | Accyon",
     description:
@@ -137,7 +139,8 @@ export const SERVICOS: ServiceCopy[] = [
 
   {
     slug: "atendimento-automatizado",
-    resumo: "Primeiro atendimento na hora, triagem e agendamento, sem robô que irrita.",
+    resumo:
+      "Fluxos de mensagens ou bots de conversa para triagem, agendamento ou suporte.",
     nav: "Atendimento automatizado",
     title: "Atendimento automatizado sem robô que irrita | Accyon",
     description:
@@ -190,7 +193,8 @@ export const SERVICOS: ServiceCopy[] = [
 
   {
     slug: "gestao-de-automacoes",
-    resumo: "Assumir, consertar, documentar e monitorar as automações que você já tem.",
+    resumo:
+      "Assumir, consertar, documentar, integrar e monitorar ações manuais. Velocidade e assertividade nos processos, com menos ação humana e menos gargalos operacionais.",
     nav: "Gestão de automações",
     title: "Gestão e manutenção das automações da sua empresa | Accyon",
     description:
@@ -244,7 +248,8 @@ export const SERVICOS: ServiceCopy[] = [
 
   {
     slug: "criacao-de-paginas",
-    resumo: "Sites e páginas rápidos, encontráveis e ligados ao seu atendimento.",
+    resumo:
+      "Criação de sites, páginas e aplicações. Encontráveis e interligados aos seus processos.",
     nav: "Sites, páginas e Bio",
     title: "Criação de sites e páginas que carregam e convertem | Accyon",
     description:

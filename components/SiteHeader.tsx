@@ -11,7 +11,6 @@ const NAV = [
   { label: "Como funciona", href: "/#como-funciona" },
   { label: "Infraestrutura", href: "/#infraestrutura" },
   { label: "Serviços", href: "/#servicos" },
-  { label: "Para quem", href: "/#para-quem" },
   { label: "Contato", href: "/contato" },
 ];
 
@@ -39,9 +38,6 @@ export function SiteHeader() {
   }, [open]);
 
   useEffect(() => {
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
     if (!window.location.hash) {
       window.scrollTo(0, 0);
     }
@@ -66,19 +62,19 @@ export function SiteHeader() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-6 xl:flex">
+          <nav className="hidden items-center gap-6 lg:flex">
             {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="whitespace-nowrap font-mono text-[0.68rem] uppercase tracking-[0.14em] text-ink-2 transition-colors hover:text-ink"
+                className="whitespace-nowrap font-mono text-[0.68rem] uppercase tracking-[0.05em] text-ink-2 transition-colors hover:text-ink"
               >
                 {item.label}
               </Link>
             ))}
           </nav>
 
-          <div className="hidden xl:block">
+          <div className="hidden lg:block">
             <OpenLeadModalButton variant="primary">
               Falar sobre minha operação
             </OpenLeadModalButton>
@@ -86,7 +82,7 @@ export function SiteHeader() {
 
           <button
             type="button"
-            className="press grid h-10 w-10 place-items-center xl:hidden"
+            className="press grid h-10 w-10 place-items-center lg:hidden"
             aria-label={open ? "Fechar menu" : "Abrir menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
@@ -118,7 +114,7 @@ export function SiteHeader() {
       {/* overlay mobile */}
       <div
         className={clsx(
-          "fixed inset-0 z-30 bg-bg/95 backdrop-blur transition-opacity duration-300 xl:hidden",
+          "fixed inset-0 z-30 bg-bg/95 backdrop-blur transition-opacity duration-300 lg:hidden",
           open ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       >

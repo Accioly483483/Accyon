@@ -55,7 +55,6 @@ export default function Home() {
       <Infraestrutura />
       <Frentes />
       <ComoFunciona />
-      <ParaQuem />
       <OQueEAccyon />
       <Autoridade />
       <Faq />
@@ -72,7 +71,7 @@ function Hero() {
         <div className="grid items-center gap-8 md:grid-cols-[1.1fr_0.9fr]">
           <div className="max-w-[46rem]">
             <Eyebrow>Infraestrutura operacional e comercial</Eyebrow>
-            <h1 className="mt-3 text-[clamp(1.625rem,3.2vw,2.5rem)] font-medium leading-[1.08] tracking-[-0.02em] text-ink">
+            <h1 className="mt-3 text-titulo font-medium text-ink">
               Sua empresa já funciona. Mas ela pode performar ainda melhor.
             </h1>
             <p className="mt-3 max-w-measure text-corpo text-ink-2">
@@ -96,7 +95,7 @@ function Hero() {
             </p>
           </div>
 
-          <div className="hidden justify-center sm:flex">
+          <div className="flex justify-center">
             <HeroDiagram />
           </div>
         </div>
@@ -220,9 +219,9 @@ function Frentes() {
           <li key={s.slug}>
             <Link
               href={`/${s.slug}`}
-              className="group grid gap-2 py-6 transition-colors md:grid-cols-[16rem_1fr] md:gap-8"
+              className="group grid gap-2 py-5 transition-colors md:grid-cols-[15rem_1fr] md:gap-8"
             >
-              <span className="text-subtitulo text-ink transition-colors group-hover:text-sinal">
+              <span className="whitespace-nowrap text-[1.05rem] font-medium text-ink transition-colors group-hover:text-sinal">
                 {s.nav}
               </span>
               <span className="max-w-measure text-corpo text-ink-2">
@@ -247,67 +246,20 @@ function ComoFunciona() {
     >
       <Reveal as="ol" className="border-t border-line">
         {ETAPAS.map((e) => (
-          <li
-            key={e.n}
-            className="grid gap-4 border-b border-line py-8 md:grid-cols-[4rem_1fr]"
-          >
-            <span className="mono text-legenda text-ink-2">{e.n}</span>
-            <div className="max-w-measure">
-              <p className="text-subtitulo text-ink">{e.nome}</p>
-              <p className="mt-2 text-corpo text-ink-2">{e.texto}</p>
-              {e.itens && (
-                <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
-                  {e.itens.map((it) => (
-                    <li key={it} className="text-corpo text-ink-2">
-                      {it}
-                    </li>
-                  ))}
-                </ul>
-              )}
-              {e.fecho && (
-                <p className="mt-4 text-corpo text-ink">{e.fecho}</p>
-              )}
-            </div>
+          <li key={e.n} className="border-b border-line py-4">
+            <p className="text-corpo text-ink-2">
+              <span className="mono mr-3 text-legenda text-ink-2">{e.n}</span>
+              <span className="font-medium text-ink">{e.nome}. </span>
+              {e.texto}
+              {e.itens && " " + e.itens.join(", ") + "."}
+              {e.fecho && " " + e.fecho}
+            </p>
           </li>
         ))}
       </Reveal>
       <p className="mt-12 max-w-measure text-subtitulo text-ink">
         Não entregamos uma coleção de ferramentas. Entregamos uma operação
         estruturada.
-      </p>
-    </Section>
-  );
-}
-
-/* ====================== PARA QUEM É (§14) ======================= */
-const SITUACOES = [
-  "Mais volume, mas ainda tudo manual.",
-  "Mais pessoas, mas responsabilidades pouco claras.",
-  "Mais ferramentas, mas informações espalhadas.",
-  "Mais clientes, mas follow-up dependendo da memória.",
-  "Empresa crescendo, mas o dono continua no centro de tudo.",
-];
-
-function ParaQuem() {
-  return (
-    <Section
-      id="para-quem"
-      title="Para empresas que cresceram mais rápido do que a própria operação."
-    >
-      <p className="max-w-measure text-corpo text-ink-2">
-        Você já tem clientes, equipe, processos e ferramentas. Mas a estrutura
-        ainda não acompanha o tamanho do negócio.
-      </p>
-      <ul className="mt-8 max-w-measure space-y-4">
-        {SITUACOES.map((s) => (
-          <li key={s} className="flex gap-4 text-corpo text-ink">
-            <span aria-hidden className="mt-4 block h-px w-6 flex-none bg-line-2" />
-            <span>{s}</span>
-          </li>
-        ))}
-      </ul>
-      <p className="mt-10 max-w-[40ch] text-subtitulo text-ink">
-        O que poderia acontecer sem precisar depender de você?
       </p>
     </Section>
   );
@@ -350,6 +302,7 @@ const PERGUNTAS_AUT = [
   "O que ainda depende de alguém lembrar?",
   "O que poderia acontecer sozinho?",
   "O que precisa continuar sendo humano?",
+  "Qual o volume / a entrada / ganhos / perdas (?)",
 ];
 
 function Autoridade() {
@@ -365,13 +318,9 @@ function Autoridade() {
           </li>
         ))}
       </ul>
-      <div className="mt-10 max-w-measure space-y-2 text-corpo text-ink-2">
-        <p>Não automatizamos por automatizar.</p>
-        <p>Não trocamos ferramentas por trocar.</p>
-        <p>Não complicamos o que pode ser simples.</p>
-        <p className="text-ink">Entendemos primeiro. Construímos depois.</p>
-        <p>E entregamos aquilo que a operação realmente precisa.</p>
-      </div>
+      <p className="mt-10 max-w-measure text-corpo text-ink">
+        Entendemos primeiro. Construímos depois.
+      </p>
     </Section>
   );
 }

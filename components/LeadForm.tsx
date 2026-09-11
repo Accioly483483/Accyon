@@ -74,6 +74,11 @@ export function LeadForm({
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const started = useRef(false);
+  const mountedOnce = useRef(false);
+
+  useEffect(() => {
+    mountedOnce.current = true;
+  }, []);
 
   useEffect(() => {
     setUtms(getUtms());
@@ -241,6 +246,7 @@ export function LeadForm({
             placeholder="Nome e sobrenome"
             autoComplete="name"
             className={inputCls}
+            autoFocus={mountedOnce.current}
           />
         )}
 
@@ -255,7 +261,7 @@ export function LeadForm({
                 type="tel"
                 inputMode="numeric"
                 autoComplete="tel-national"
-                autoFocus
+                autoFocus={mountedOnce.current}
                 value={maskPhone(data.whatsapp)}
                 onChange={(e) => set("whatsapp", e.target.value.replace(/\D/g, ""))}
                 onFocus={scrollInputIntoView}
@@ -278,6 +284,7 @@ export function LeadForm({
             placeholder="Nome da empresa"
             autoComplete="organization"
             className={inputCls}
+            autoFocus={mountedOnce.current}
           />
         )}
 
@@ -291,6 +298,7 @@ export function LeadForm({
             placeholder="voce@empresa.com.br"
             autoComplete="email"
             className={inputCls}
+            autoFocus={mountedOnce.current}
           />
         )}
 
@@ -334,7 +342,7 @@ export function LeadForm({
               O que você gostaria que fosse diferente em seu processo?
             </Question>
             <textarea
-              autoFocus
+              autoFocus={mountedOnce.current}
               value={data.melhoria}
               onChange={(e) => set("melhoria", e.target.value)}
               onFocus={scrollInputIntoView}
@@ -414,6 +422,7 @@ function TextStep({
   autoComplete,
   type = "text",
   className,
+  autoFocus,
 }: {
   question: string;
   value: string;
@@ -423,6 +432,7 @@ function TextStep({
   autoComplete: string;
   type?: "text" | "email";
   className?: string;
+  autoFocus?: boolean;
 }) {
   return (
     <div>
@@ -434,7 +444,7 @@ function TextStep({
         autoCapitalize={type === "email" ? "off" : undefined}
         autoCorrect="off"
         spellCheck={false}
-        autoFocus
+        autoFocus={autoFocus}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onFocus={scrollInputIntoView}

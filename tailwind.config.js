@@ -37,7 +37,7 @@ module.exports = {
       fontSize: {
         // escala modular Perfect Fourth 1.333 · base 18px · valores do Brand Book
         display: ["clamp(3.25rem, 8vw, 6.25rem)", { lineHeight: "0.96", letterSpacing: "-0.04em" }],
-        titulo: ["clamp(2.25rem, 5vw, 3.5rem)", { lineHeight: "1.02", letterSpacing: "-0.03em" }],
+        titulo: ["clamp(1.625rem, 3.2vw, 2.5rem)", { lineHeight: "1.08", letterSpacing: "-0.02em" }],
         subtitulo: ["clamp(1.5rem, 3vw, 2rem)", { lineHeight: "1.2", letterSpacing: "-0.02em" }],
         corpo: ["1.125rem", { lineHeight: "1.62" }],
         legenda: ["0.8125rem", { lineHeight: "1.5", letterSpacing: "0.01em" }],

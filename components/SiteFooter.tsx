@@ -5,7 +5,7 @@ import { SERVICOS } from "@/content/servicos";
 const LINKS = [
   { label: "Início", href: "/" },
   { label: "Como funciona", href: "/#como-funciona" },
-  { label: "Para quem", href: "/#para-quem" },
+  { label: "Serviços", href: "/#servicos" },
   { label: "Glossário", href: "/glossario" },
   { label: "Contato", href: "/contato" },
   { label: "Privacidade", href: "/privacidade" },
