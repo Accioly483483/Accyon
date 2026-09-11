@@ -295,7 +295,14 @@ function OQueEAccyon() {
     <Section
       title={
         <>
-          O que é a <span className="text-sinal">Accyon</span>?
+          O que é a{" "}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo/accyon-wordmark.png"
+            alt="Accyon"
+            className="inline-block h-[0.7em] w-auto align-baseline"
+          />
+          ?
         </>
       }
       surface

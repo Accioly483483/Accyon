@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { clsx } from "@/lib/clsx";
-import { NodeMark } from "./NodeMark";
 import { OpenLeadModalButton } from "./OpenLeadModalButton";
 
 const NAV = [
@@ -55,11 +54,9 @@ export function SiteHeader() {
         )}
       >
         <div className="container-accyon flex h-16 items-center justify-between md:h-20">
-          <Link href="/" className="flex items-center gap-2.5" aria-label="Accyon, início">
-            <NodeMark size={22} />
-            <span className="font-display text-[1.05rem] font-semibold tracking-[0.16em] text-ink">
-              Accyon
-            </span>
+          <Link href="/" className="flex items-center" aria-label="Accyon, início">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo/accyon-lockup.png" alt="Accyon" className="h-6 w-auto md:h-7" />
           </Link>
 
           <nav className="hidden items-center gap-6 lg:flex">

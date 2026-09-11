@@ -1,16 +1,10 @@
-import { NodeMark } from "./NodeMark";
-
 export function SiteFooter() {
   return (
     <footer className="border-t border-line bg-surface py-16">
       <div className="container-accyon">
         <div className="max-w-measure">
-          <div className="flex items-center gap-2.5">
-            <NodeMark size={20} />
-            <span className="font-display text-[1rem] font-semibold tracking-[0.16em] text-ink">
-              Accyon
-            </span>
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo/accyon-lockup.png" alt="Accyon" className="h-6 w-auto" />
           <p className="mt-4 text-corpo text-ink-2">
             Infraestrutura para operações que precisam avançar.
           </p>
