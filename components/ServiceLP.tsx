@@ -45,7 +45,7 @@ export function ServiceLP({ data }: { data: ServiceCopy }) {
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <Button href="#formulario" variant="primary" arrow>
-                  Solicitar análise da operação
+                  Falar sobre minha operação
                 </Button>
                 <Button href="#como-funciona" variant="ghost">
                   Como funciona
@@ -148,17 +148,15 @@ export function ServiceLP({ data }: { data: ServiceCopy }) {
       {/* CTA + formulário */}
       <Section id="formulario" eyebrow="Próxima etapa" title={data.ctaTitulo} surface>
         <p className="max-w-measure text-corpo text-ink-2">
-          Conte para a Accyon como sua empresa funciona hoje. A primeira etapa não
-          é contratar. É entender.
+          Conte para a Accyon como sua empresa funciona hoje.
         </p>
         <div className="mt-12 border border-line bg-bg p-6 md:p-10">
           <p className="text-subtitulo text-ink">
             Conte um pouco sobre sua operação.
           </p>
           <p className="mb-10 mt-3 max-w-measure text-corpo text-ink-2">
-            Não precisamos de uma apresentação formal. Queremos entender onde sua
-            operação está hoje e o que está impedindo seu trabalho de fluir como
-            poderia.
+            Queremos entender onde sua operação está hoje e o que está
+            impedindo seu trabalho de fluir como poderia.
           </p>
           <LeadForm formSlug={data.slug} />
         </div>

@@ -72,7 +72,8 @@ function Hero() {
           <div className="max-w-[46rem]">
             <Eyebrow>Infraestrutura operacional e comercial</Eyebrow>
             <h1 className="mt-3 text-titulo font-medium text-ink">
-              Sua empresa já funciona. Mas ela pode performar ainda melhor.
+              Sua empresa já funciona. Mas ela pode{" "}
+              <span className="text-sinal">performar ainda melhor</span>.
             </h1>
             <p className="mt-3 max-w-measure text-corpo text-ink-2">
               A Accyon encontra onde sua operação perde velocidade e constrói a
@@ -84,7 +85,7 @@ function Hero() {
             </p>
             <div className="mt-5 flex flex-wrap items-center gap-4">
               <OpenLeadModalButton variant="primary" arrow>
-                Solicitar análise da operação
+                Falar sobre minha operação
               </OpenLeadModalButton>
               <Button href="/#como-funciona" variant="ghost">
                 Entender como funciona
@@ -120,7 +121,12 @@ const SINAIS = [
 function Problema() {
   return (
     <Section
-      title="Sua empresa não está parada. Ela talvez desacelere nas pequenas coisas."
+      title={
+        <>
+          Sua empresa não está parada. Ela talvez desacelere nas{" "}
+          <span className="text-sinal">pequenas coisas</span>.
+        </>
+      }
       surface
     >
       <Reveal as="ul" className="max-w-measure space-y-4">
@@ -147,7 +153,15 @@ function Problema() {
 /* ===================== ORDEM ESCONDIDA (§09) ====================== */
 function OrdemEscondida() {
   return (
-    <Section title="Toda operação tem uma ordem. Nós encontramos a sua." surface>
+    <Section
+      title={
+        <>
+          Toda operação tem uma <span className="text-sinal">ordem</span>.
+          Nós encontramos a <span className="text-sinal">sua</span>.
+        </>
+      }
+      surface
+    >
       <p className="max-w-measure text-corpo text-ink-2">
         Toda mensagem, venda, tarefa, decisão e atendimento possui um caminho.
         Nosso trabalho é descobrir esse caminho. A Accyon conversa com as pessoas
@@ -189,7 +203,12 @@ function Infraestrutura() {
     <Section
       id="infraestrutura"
       eyebrow="Infraestrutura"
-      title="A infraestrutura que sua operação precisa."
+      title={
+        <>
+          A <span className="text-sinal">infraestrutura</span> que sua
+          operação precisa.
+        </>
+      }
     >
       <p className="max-w-measure text-corpo text-ink-2">
         Organizar, conectar, automatizar, enxergar e aplicar inteligência.
@@ -212,7 +231,12 @@ function Frentes() {
     <Section
       id="servicos"
       eyebrow="Frentes de trabalho"
-      title="A infraestrutura entra por onde a operação mais precisa."
+      title={
+        <>
+          A infraestrutura entra por onde a{" "}
+          <span className="text-sinal">operação</span> mais precisa.
+        </>
+      }
     >
       <ul className="divide-y divide-line border-y border-line">
         {SERVICOS.map((s) => (
@@ -268,7 +292,14 @@ function ComoFunciona() {
 /* ================== O QUE É A ACCYON (§24, GEO) ================== */
 function OQueEAccyon() {
   return (
-    <Section title="O que é a Accyon?" surface>
+    <Section
+      title={
+        <>
+          O que é a <span className="text-sinal">Accyon</span>?
+        </>
+      }
+      surface
+    >
       <div className="max-w-measure space-y-4 text-corpo text-ink-2">
         <p>
           A Accyon é uma empresa brasileira de infraestrutura operacional e
@@ -307,7 +338,14 @@ const PERGUNTAS_AUT = [
 
 function Autoridade() {
   return (
-    <Section title="Uma operação melhor começa com perguntas melhores.">
+    <Section
+      title={
+        <>
+          Uma operação melhor começa com{" "}
+          <span className="text-sinal">perguntas melhores</span>.
+        </>
+      }
+    >
       <ul className="grid max-w-3xl gap-3 sm:grid-cols-2">
         {PERGUNTAS_AUT.map((p) => (
           <li
@@ -355,28 +393,28 @@ function CtaEForm() {
     <Section
       id="formulario"
       eyebrow="Próxima etapa"
-      title="Onde sua operação está perdendo velocidade?"
+      title={
+        <>
+          Onde sua operação está perdendo{" "}
+          <span className="text-sinal">velocidade</span>?
+        </>
+      }
     >
       <p className="max-w-measure text-corpo text-ink-2">
         Conte para a Accyon como sua empresa funciona hoje. Vamos entender onde
         existem gargalos e avaliar o que pode ser organizado, conectado ou
         automatizado.
       </p>
-      <p className="mt-8 max-w-[36ch] text-subtitulo text-ink">
-        A primeira etapa não é contratar. É entender.
-      </p>
-
       <div className="mt-12 border border-line p-6 md:p-10">
         <p className="text-subtitulo text-ink">
           Conte um pouco sobre sua operação.
         </p>
         <p className="mb-10 mt-3 max-w-measure text-corpo text-ink-2">
-          Não precisamos de uma apresentação formal. Queremos entender onde sua
-          operação está hoje e o que está impedindo seu trabalho de fluir como
-          poderia.
+          Queremos entender onde sua operação está hoje e o que está
+          impedindo seu trabalho de fluir como poderia.
         </p>
         <OpenLeadModalButton variant="primary" arrow>
-          Contar sobre minha operação
+          Falar sobre minha operação
         </OpenLeadModalButton>
         <p className="mono mt-8 text-legenda text-ink-2">
           Projeto sob medida · A depender das suas particularidades

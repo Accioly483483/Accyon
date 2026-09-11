@@ -5,12 +5,11 @@ import { LeadForm } from "@/components/LeadForm";
 export const metadata: Metadata = {
   title: { absolute: "Contato | Accyon" },
   description:
-    "Conte para a Accyon como sua operação funciona hoje. A primeira etapa não é contratar. É entender onde existem gargalos.",
+    "Conte para a Accyon como sua operação funciona hoje. Vamos entender onde existem gargalos.",
   alternates: { canonical: "/contato" },
   openGraph: {
     title: "Contato | Accyon",
-    description:
-      "Conte para a Accyon como sua operação funciona hoje. A primeira etapa não é contratar. É entender.",
+    description: "Conte para a Accyon como sua operação funciona hoje.",
     url: "/contato",
   },
 };
@@ -25,9 +24,8 @@ export default function Contato() {
       title="Conte para a Accyon como sua operação funciona hoje."
     >
       <p className="max-w-measure text-corpo text-ink-2">
-        Não precisamos de uma apresentação formal. Queremos entender onde sua
-        operação está e o que está travando o trabalho. A primeira etapa não é
-        contratar. É entender.
+        Queremos entender onde sua operação está e o que está travando o
+        trabalho.
       </p>
 
       <div className="mt-12 border border-line bg-surface p-6 md:p-10">
