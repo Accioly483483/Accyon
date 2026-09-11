@@ -1,10 +1,11 @@
 import { Container } from "@/components/Container";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Button } from "@/components/Button";
+import { OpenLeadModalButton } from "@/components/OpenLeadModalButton";
 import { Section } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
 import { HeroDiagram } from "@/components/HeroDiagram";
-import { LeadForm } from "@/components/LeadForm";
+import { InfraDiagram } from "@/components/InfraDiagram";
 import { JsonLd } from "@/components/JsonLd";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -50,13 +51,10 @@ export default function Home() {
       />
       <Hero />
       <Problema />
-      <MudancaDePerspectiva />
       <OrdemEscondida />
       <Infraestrutura />
       <Frentes />
       <ComoFunciona />
-      <Diferencial />
-      <AntesDepois />
       <ParaQuem />
       <OQueEAccyon />
       <Autoridade />
@@ -69,13 +67,13 @@ export default function Home() {
 /* ============================ HERO (§06) ============================ */
 function Hero() {
   return (
-    <section className="relative pb-section pt-16 md:pt-24">
+    <section className="relative pb-section pt-6 md:pt-10">
       <Container>
         <div className="grid items-center gap-12 md:grid-cols-[1.1fr_0.9fr] md:gap-8">
           <div className="max-w-[46rem]">
             <Eyebrow>Infraestrutura operacional e comercial</Eyebrow>
             <h1 className="mt-6 text-titulo font-medium text-ink">
-              Sua empresa já funciona. Mas ela poderia funcionar muito melhor.
+              Sua empresa já funciona. Mas ela pode performar ainda melhor.
             </h1>
             <p className="mt-6 max-w-measure text-corpo text-ink-2">
               A Accyon encontra onde sua operação perde velocidade e constrói a
@@ -86,15 +84,15 @@ function Hero() {
               operação que não depende de você para cada movimento.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Button href="/contato" variant="primary" arrow>
+              <OpenLeadModalButton variant="primary" arrow>
                 Solicitar análise da operação
-              </Button>
+              </OpenLeadModalButton>
               <Button href="/#como-funciona" variant="ghost">
                 Entender como funciona
               </Button>
             </div>
             <p className="mono mt-6 text-legenda text-ink-2">
-              Projetos sob medida · Implementação em 2 a 4 semanas
+              Projetos sob medida · A depender das suas particularidades
             </p>
           </div>
 
@@ -121,7 +119,7 @@ const SINAIS = [
 function Problema() {
   return (
     <Section
-      title="Sua empresa não está parada. Ela está presa em pequenas coisas."
+      title="Sua empresa não está parada. Ela talvez desacelere nas pequenas coisas."
       surface
     >
       <Reveal as="ul" className="max-w-measure space-y-4">
@@ -133,52 +131,14 @@ function Problema() {
         ))}
       </Reveal>
       <p className="mt-10 max-w-measure text-corpo text-ink-2">
-        Nada disso parece grave sozinho. O problema é quando acontece todos os
-        dias.
+        Isoladamente não parece nada grave. Mas no decorrer dos dias fica
+        perceptível.
       </p>
       <Reveal>
         <p className="mt-12 max-w-[34ch] text-subtitulo text-ink">
-          O problema não é falta de esforço. É falta de estrutura.
+          O problema não é falta de esforço. É não possuir a estrutura certa.
         </p>
       </Reveal>
-    </Section>
-  );
-}
-
-/* ================== MUDANÇA DE PERSPECTIVA (§08) =================== */
-const FERRAMENTAS = [
-  "WhatsApp",
-  "Planilha",
-  "CRM",
-  "E-mail",
-  "Financeiro",
-  "Instagram",
-  "Marketing",
-  "IA",
-];
-
-function MudancaDePerspectiva() {
-  return (
-    <Section title="Talvez você não precise de mais uma ferramenta.">
-      <div className="flex flex-wrap gap-3">
-        {FERRAMENTAS.map((f) => (
-          <span
-            key={f}
-            className="mono border border-line-2 px-3 py-2 text-legenda uppercase tracking-[0.14em] text-ink-2"
-          >
-            {f}
-          </span>
-        ))}
-      </div>
-      <p className="mt-10 max-w-[38ch] text-subtitulo text-ink">
-        Ferramentas diferentes não significam uma operação integrada.
-      </p>
-      <p className="mt-8 max-w-measure text-corpo text-ink-2">
-        É possível ter WhatsApp, planilhas, CRM, financeiro, marketing,
-        automações e inteligência artificial, e ainda assim depender de pessoas
-        lembrando o que fazer. A Accyon começa pelo funcionamento da empresa. Não
-        pela ferramenta.
-      </p>
     </Section>
   );
 }
@@ -223,14 +183,6 @@ function OrdemEscondida() {
 }
 
 /* ==================== INFRAESTRUTURA (§10) ====================== */
-const CAMADAS = [
-  ["01", "Organizar", "Processos, responsabilidades e fluxos."],
-  ["02", "Conectar", "Sistemas, ferramentas e informações."],
-  ["03", "Automatizar", "Tarefas repetitivas e movimentos previsíveis."],
-  ["04", "Enxergar", "Dados, indicadores e dashboards."],
-  ["05", "Inteligência", "IA aplicada onde realmente existe uma oportunidade."],
-];
-
 function Infraestrutura() {
   return (
     <Section
@@ -238,19 +190,12 @@ function Infraestrutura() {
       eyebrow="Infraestrutura"
       title="A infraestrutura que sua operação precisa."
     >
-      <div className="grid gap-12 md:grid-cols-[0.7fr_1.3fr]">
-        <p className="text-display font-medium leading-none text-ink">Operação</p>
-        <Reveal as="ul" className="divide-y divide-line border-y border-line">
-          {CAMADAS.map(([n, nome, desc]) => (
-            <li key={n} className="flex gap-6 py-6">
-              <span className="mono text-legenda text-ink-2">{n}</span>
-              <div>
-                <p className="text-subtitulo text-ink">{nome}</p>
-                <p className="mt-1 text-corpo text-ink-2">{desc}</p>
-              </div>
-            </li>
-          ))}
-        </Reveal>
+      <p className="max-w-measure text-corpo text-ink-2">
+        Organizar, conectar, automatizar, enxergar e aplicar inteligência.
+        Cada camada entra onde a operação precisa, conectada com a próxima.
+      </p>
+      <div className="mt-12 overflow-x-auto">
+        <InfraDiagram />
       </div>
       <p className="mt-12 max-w-measure text-corpo text-ink-2">
         A tecnologia varia. O objetivo não. Construir uma operação mais clara,
@@ -264,6 +209,7 @@ function Infraestrutura() {
 function Frentes() {
   return (
     <Section
+      id="servicos"
       eyebrow="Frentes de trabalho"
       title="A infraestrutura entra por onde a operação mais precisa."
     >
@@ -331,97 +277,6 @@ function ComoFunciona() {
   );
 }
 
-/* ===================== DIFERENCIAL (§12) ====================== */
-const PERGUNTAS_DIF = [
-  "Como o trabalho acontece?",
-  "Quem participa?",
-  "Onde a informação nasce?",
-  "Onde ela deveria chegar?",
-  "Onde o processo para?",
-  "O que depende de alguém lembrar?",
-  "O que poderia acontecer sozinho?",
-  "O que precisa continuar sendo humano?",
-];
-
-function Diferencial() {
-  return (
-    <Section title="Não começamos pela ferramenta.">
-      <p className="max-w-measure text-corpo text-ink-2">
-        É fácil começar por um CRM. É fácil começar por uma automação. É fácil
-        começar por uma integração. Difícil é saber se aquilo resolve o problema
-        certo. A Accyon começa pela empresa. Perguntamos:
-      </p>
-      <ul className="mt-6 max-w-measure space-y-3">
-        {PERGUNTAS_DIF.map((p) => (
-          <li key={p} className="text-corpo text-ink">
-            {p}
-          </li>
-        ))}
-      </ul>
-      <p className="mt-8 max-w-measure text-corpo text-ink-2">
-        Só então decidimos o que construir.
-      </p>
-      <Reveal>
-        <p className="mt-16 text-titulo font-medium leading-tight text-ink-2">
-          Não começamos pela ferramenta.
-          <br />
-          <span className="text-ink">Começamos pela empresa.</span>
-        </p>
-      </Reveal>
-    </Section>
-  );
-}
-
-/* ===================== ANTES x DEPOIS (§13) ====================== */
-const ANTES = [
-  "Informação espalhada.",
-  "Cada pessoa trabalha de um jeito.",
-  "Follow-up depende da memória.",
-  "Equipe precisa ser cobrada.",
-  "Tarefas repetitivas consomem tempo.",
-  "Sistemas não conversam.",
-  "O dono entra em tudo.",
-];
-const DEPOIS = [
-  "Processos possuem caminhos claros.",
-  "Responsabilidades ficam definidas.",
-  "Informação chega às pessoas certas.",
-  "Follow-ups seguem fluxos.",
-  "Tarefas repetitivas podem ser automatizadas.",
-  "Sistemas trabalham conectados.",
-  "Gestão consegue enxergar a operação.",
-  "O dono não precisa estar em cada movimento.",
-];
-
-function AntesDepois() {
-  return (
-    <Section title="Quando a operação muda, o trabalho muda." surface>
-      <div className="grid gap-10 md:grid-cols-2">
-        <div>
-          <p className="mono text-eyebrow uppercase text-ink-2">Antes</p>
-          <ul className="mt-5 space-y-3 text-corpo text-ink-2">
-            {ANTES.map((a) => (
-              <li key={a}>{a}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p className="mono text-eyebrow uppercase text-sinal">Depois</p>
-          <ul className="mt-5 space-y-3 text-corpo text-ink">
-            {DEPOIS.map((d) => (
-              <li key={d}>{d}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      <p className="mt-12 max-w-measure text-corpo text-ink-2">
-        Não é sobre fazer mais. É sobre fazer o trabalho exigir menos esforço
-        desnecessário.
-      </p>
-    </Section>
-  );
-}
-
 /* ====================== PARA QUEM É (§14) ======================= */
 const SITUACOES = [
   "Mais volume, mas ainda tudo manual.",
@@ -463,7 +318,7 @@ function OQueEAccyon() {
       <div className="max-w-measure space-y-4 text-corpo text-ink-2">
         <p>
           A Accyon é uma empresa brasileira de infraestrutura operacional e
-          comercial que ajuda pequenas e médias empresas a organizar, conectar e
+          comercial que ajuda empreendedores e empresas a organizar, conectar e
           automatizar suas operações.
         </p>
         <p>
@@ -569,9 +424,11 @@ function CtaEForm() {
           operação está hoje e o que está impedindo seu trabalho de fluir como
           poderia.
         </p>
-        <LeadForm formSlug="home" />
+        <OpenLeadModalButton variant="primary" arrow>
+          Contar sobre minha operação
+        </OpenLeadModalButton>
         <p className="mono mt-8 text-legenda text-ink-2">
-          Projeto sob medida · Implementação em 2 a 4 semanas
+          Projeto sob medida · A depender das suas particularidades
         </p>
       </div>
     </Section>

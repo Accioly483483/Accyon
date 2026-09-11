@@ -42,13 +42,12 @@ export function HeroDiagram() {
         />
       ))}
 
-      {/* sinal que percorre o caminho principal, uma vez, e descansa no fim */}
+      {/* sinal que percorre o caminho principal em loop contínuo */}
       <circle r="3" className="hd-pulse" fill="var(--sinal)">
         <animateMotion
           dur="3.4s"
           begin="1.6s"
-          repeatCount="2"
-          fill="freeze"
+          repeatCount="indefinite"
           path="M60 40 L60 120 L180 160 L180 240 L60 300"
         />
       </circle>

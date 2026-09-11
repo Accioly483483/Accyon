@@ -4,11 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { clsx } from "@/lib/clsx";
 import { NodeMark } from "./NodeMark";
-import { Button } from "./Button";
+import { OpenLeadModalButton } from "./OpenLeadModalButton";
 
 const NAV = [
+  { label: "Home", href: "/" },
   { label: "Como funciona", href: "/#como-funciona" },
   { label: "Infraestrutura", href: "/#infraestrutura" },
+  { label: "Serviços", href: "/#servicos" },
   { label: "Para quem", href: "/#para-quem" },
   { label: "Contato", href: "/contato" },
 ];
@@ -36,6 +38,15 @@ export function SiteHeader() {
     };
   }, [open]);
 
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
   return (
     <>
       <div ref={sentinel} aria-hidden className="absolute left-0 top-0 h-px w-px" />
@@ -55,27 +66,27 @@ export function SiteHeader() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-8 md:flex">
+          <nav className="hidden items-center gap-6 lg:flex">
             {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-ink-2 transition-colors hover:text-ink"
+                className="whitespace-nowrap font-mono text-[0.68rem] uppercase tracking-[0.14em] text-ink-2 transition-colors hover:text-ink"
               >
                 {item.label}
               </Link>
             ))}
           </nav>
 
-          <div className="hidden md:block">
-            <Button href="/contato" variant="primary">
+          <div className="hidden lg:block">
+            <OpenLeadModalButton variant="primary">
               Solicitar análise
-            </Button>
+            </OpenLeadModalButton>
           </div>
 
           <button
             type="button"
-            className="press grid h-10 w-10 place-items-center md:hidden"
+            className="press grid h-10 w-10 place-items-center lg:hidden"
             aria-label={open ? "Fechar menu" : "Abrir menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
@@ -107,7 +118,7 @@ export function SiteHeader() {
       {/* overlay mobile */}
       <div
         className={clsx(
-          "fixed inset-0 z-30 bg-bg/95 backdrop-blur transition-opacity duration-300 md:hidden",
+          "fixed inset-0 z-30 bg-bg/95 backdrop-blur transition-opacity duration-300 lg:hidden",
           open ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       >
@@ -127,10 +138,10 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <div className="mt-4">
-            <Button href="/contato" variant="primary" arrow>
+          <div className="mt-4" onClickCapture={() => setOpen(false)}>
+            <OpenLeadModalButton variant="primary" arrow>
               Solicitar análise
-            </Button>
+            </OpenLeadModalButton>
           </div>
         </nav>
       </div>
