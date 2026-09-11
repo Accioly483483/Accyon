@@ -6,6 +6,7 @@ import { Section } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
 import { HeroDiagram } from "@/components/HeroDiagram";
 import { InfraDiagram } from "@/components/InfraDiagram";
+import { NichosModal } from "@/components/NichosModal";
 import { JsonLd } from "@/components/JsonLd";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -160,33 +161,14 @@ function OrdemEscondida() {
           Nós encontramos a <span className="text-sinal">sua</span>.
         </>
       }
-      surface
     >
       <p className="max-w-measure text-corpo text-ink-2">
-        Toda mensagem, venda, tarefa, decisão e atendimento possui um caminho.
-        Nosso trabalho é descobrir esse caminho. A Accyon conversa com as pessoas
-        envolvidas na operação, entende como o trabalho realmente acontece,
-        identifica gargalos, dependências, repetições e informações que se
-        perdem. Depois transforma essa lógica em uma estrutura clara.
+        Clique aqui e confira se algum desses nichos se assemelha a sua
+        operação:
       </p>
 
-      <div className="mt-12 grid gap-8 md:grid-cols-2">
-        <div className="border border-line p-6">
-          <p className="mono text-eyebrow uppercase text-ink-2">Antes</p>
-          <ul className="mt-4 space-y-2 text-corpo text-ink-2">
-            <li>Cliente, WhatsApp, ?</li>
-            <li>Planilha, ?</li>
-            <li>Cobrança, ?</li>
-            <li>Vendedor, ?</li>
-          </ul>
-        </div>
-        <div className="border border-line bg-bg p-6">
-          <p className="mono text-eyebrow uppercase text-sinal">Depois</p>
-          <p className="mono mt-4 text-legenda leading-relaxed text-ink">
-            Cliente, atendimento, informação, decisão, execução, follow-up,
-            próximo movimento.
-          </p>
-        </div>
+      <div className="mt-6">
+        <NichosModal />
       </div>
 
       <p className="mt-10 max-w-measure text-corpo text-ink-2">
@@ -209,6 +191,7 @@ function Infraestrutura() {
           operação precisa.
         </>
       }
+      surface
     >
       <p className="max-w-measure text-corpo text-ink-2">
         Organizar, conectar, automatizar, enxergar e aplicar inteligência.
@@ -305,7 +288,6 @@ function OQueEAccyon() {
           ?
         </>
       }
-      surface
     >
       <div className="max-w-measure space-y-4 text-corpo text-ink-2">
         <p>
@@ -352,6 +334,7 @@ function Autoridade() {
           <span className="text-sinal">perguntas melhores</span>.
         </>
       }
+      surface
     >
       <ul className="grid max-w-3xl gap-3 sm:grid-cols-2">
         {PERGUNTAS_AUT.map((p) => (
@@ -373,7 +356,7 @@ function Autoridade() {
 /* ========================= FAQ (§25) ========================= */
 function Faq() {
   return (
-    <Section eyebrow="Perguntas" title="Perguntas frequentes" surface>
+    <Section eyebrow="Perguntas" title="Perguntas frequentes">
       <div className="border-t border-line">
         {FAQ.map(([q, a]) => (
           <details key={q} className="group border-b border-line py-5">
@@ -406,6 +389,7 @@ function CtaEForm() {
           <span className="text-sinal">velocidade</span>?
         </>
       }
+      surface
     >
       <p className="max-w-measure text-corpo text-ink-2">
         Conte para a Accyon como sua empresa funciona hoje. Vamos entender onde

@@ -30,12 +30,12 @@ export function Section({
     >
       <Container>
         {(eyebrow || title || intro) && (
-          <div className="mb-12 max-w-measure md:mb-16">
+          <div className="mb-8 max-w-measure md:mb-10">
             {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
             {title && (
-              <h2 className="mt-6 text-titulo font-medium text-ink">{title}</h2>
+              <h2 className="mt-4 text-titulo font-medium text-ink">{title}</h2>
             )}
-            {intro && <p className="mt-5 text-corpo text-ink-2">{intro}</p>}
+            {intro && <p className="mt-4 text-corpo text-ink-2">{intro}</p>}
           </div>
         )}
         {children}

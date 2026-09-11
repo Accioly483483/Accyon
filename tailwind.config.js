@@ -60,7 +60,7 @@ module.exports = {
         reveal: "700ms",
       },
       spacing: {
-        section: "clamp(4.5rem, 8vw, 7rem)", // respiro macro entre seções
+        section: "clamp(2.75rem, 5vw, 4.5rem)", // respiro macro entre seções
       },
       keyframes: {
         "step-in": {
