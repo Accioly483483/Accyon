@@ -4,7 +4,6 @@ import { Button } from "@/components/Button";
 import { OpenLeadModalButton } from "@/components/OpenLeadModalButton";
 import { Section } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
-import { HeroDiagram } from "@/components/HeroDiagram";
 import { InfraDiagram } from "@/components/InfraDiagram";
 import { NichosModal } from "@/components/NichosModal";
 import { JsonLd } from "@/components/JsonLd";
@@ -67,9 +66,21 @@ export default function Home() {
 /* ============================ HERO (§06) ============================ */
 function Hero() {
   return (
-    <section className="relative pb-8 pt-4 md:pb-10 md:pt-6">
+    <section className="hero-video relative isolate flex min-h-[85svh] items-center overflow-hidden py-16">
+      <video
+        aria-hidden
+        className="absolute inset-0 -z-10 h-full w-full object-cover"
+        src="/videos/net-connect1.mp4"
+        poster="/videos/net-connect1-poster.jpg"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+      />
+      <div aria-hidden className="hero-video-overlay absolute inset-0 -z-10" />
       <Container>
-        <div className="grid items-center gap-8 md:grid-cols-[1.1fr_0.9fr]">
+        <div>
           <div className="max-w-[46rem]">
             <Eyebrow>Infraestrutura operacional e comercial</Eyebrow>
             <h1 className="mt-3 text-titulo font-medium text-ink">
@@ -95,10 +106,6 @@ function Hero() {
             <p className="mono mt-3 text-legenda text-ink-2">
               Projetos sob medida · A depender das suas particularidades
             </p>
-          </div>
-
-          <div className="flex justify-center">
-            <HeroDiagram />
           </div>
         </div>
       </Container>

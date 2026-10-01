@@ -221,3 +221,19 @@
   letter-spacing: 0.04em;
   fill: var(--ink-2);
 }
+
+/* Hero com vídeo de fundo (net-connect1). Overlay na cor do Painel garante
+   leitura e funde a base do hero com a seção seguinte. */
+.hero-video {
+  background: var(--bg) url("/videos/net-connect1-poster.jpg") center / cover;
+}
+.hero-video-overlay {
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--bg) 88%, transparent) 0%, color-mix(in srgb, var(--bg) 55%, transparent) 100%),
+    linear-gradient(180deg, transparent 60%, var(--surface) 100%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-video video {
+    display: none;
+  }
+}
