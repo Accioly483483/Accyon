@@ -90,12 +90,15 @@ function Hero() {
               <span className="text-sinal">performar ainda melhor</span>.
             </h1>
             <p className="mt-3 max-w-measure text-corpo text-ink-2">
-              A Accyon encontra onde sua operação perde velocidade e constrói a
-              estrutura necessária para conectar pessoas, processos e tecnologia.
+              A Accyon encontra onde sua operação trava e constrói uma
+              estrutura que faz o trabalho fluir.
             </p>
             <p className="mt-2 max-w-measure text-corpo text-ink-2">
-              Menos trabalho manual. Mais clareza sobre o que acontece. Uma
-              operação que não depende de você para cada movimento.
+              Menos trabalho manual.
+              <br />
+              Mais clareza sobre a operação.
+              <br />
+              Uma empresa que não depende de você para cada movimento.
             </p>
             <div className="mt-5 flex flex-wrap items-center gap-4">
               <OpenLeadModalButton variant="primary" arrow>
@@ -133,13 +136,13 @@ function Problema() {
     <Section
       title={
         <>
-          Sua empresa não está parada. Ela talvez desacelere nas{" "}
+          Sua empresa não está parada. Talvez só desacelere nas{" "}
           <span className="text-sinal">pequenas coisas</span>.
         </>
       }
       surface
     >
-      <Reveal as="ul" className="max-w-measure space-y-4">
+      <Reveal as="ul" className="max-w-measure space-y-1">
         {SINAIS.map((s) => (
           <li key={s} className="flex gap-4 text-corpo text-ink">
             <span aria-hidden className="mt-4 block h-px w-6 flex-none bg-line-2" />
@@ -147,13 +150,14 @@ function Problema() {
           </li>
         ))}
       </Reveal>
-      <p className="mt-10 max-w-measure text-corpo text-ink-2">
+      <p className="mt-6 max-w-measure text-corpo text-ink-2">
         Isoladamente não parece nada grave. Mas no decorrer dos dias fica
         perceptível.
       </p>
       <Reveal>
-        <p className="mt-12 max-w-[34ch] text-subtitulo text-ink">
-          O problema não é falta de esforço. É não possuir a estrutura certa.
+        <p className="mt-8 max-w-[34ch] text-subtitulo text-ink">
+          O problema não é falta de esforço. É não possuir a{" "}
+          <span className="text-sinal">estrutura certa</span>.
         </p>
       </Reveal>
     </Section>
@@ -172,6 +176,11 @@ function OrdemEscondida() {
       }
     >
       <p className="max-w-measure text-corpo text-ink-2">
+        Quando o caminho fica claro, fica muito mais fácil decidir o que deve ser
+        organizado, conectado ou automatizado.
+      </p>
+
+      <p className="mt-6 max-w-measure text-corpo text-ink-2">
         Clique aqui e confira se algum desses nichos se assemelha a sua
         operação:
       </p>
@@ -179,11 +188,6 @@ function OrdemEscondida() {
       <div className="mt-6">
         <NichosModal />
       </div>
-
-      <p className="mt-10 max-w-measure text-corpo text-ink-2">
-        Quando o caminho fica claro, fica muito mais fácil decidir o que deve ser
-        organizado, conectado ou automatizado.
-      </p>
     </Section>
   );
 }
