@@ -67,11 +67,13 @@ export default function Home() {
 function Hero() {
   return (
     <section className="hero-video relative isolate flex min-h-[85svh] items-center overflow-hidden py-16">
+      {/* MP4 tem cor marcada como BT.601 (tom do player do Windows): sem a marca, o Chrome mudava o tom
+          ao alternar entre overlay de hardware (parado) e composição (scroll). */}
       <video
         aria-hidden
         className="absolute inset-0 -z-10 h-full w-full object-cover"
-        src="/videos/net-connect1.mp4"
-        poster="/videos/net-connect1-poster.jpg"
+        src="/videos/net-connect1.mp4?v=3"
+        poster="/videos/net-connect1-poster.jpg?v=2"
         autoPlay
         muted
         loop

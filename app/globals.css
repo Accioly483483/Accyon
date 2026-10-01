@@ -225,11 +225,16 @@
 /* Hero com vídeo de fundo (net-connect1). Overlay na cor do Painel garante
    leitura e funde a base do hero com a seção seguinte. */
 .hero-video {
-  background: var(--bg) url("/videos/net-connect1-poster.jpg") center / cover;
+  background: var(--bg) url("/videos/net-connect1-poster.jpg?v=2") center / cover;
+}
+/* Vídeo não opaco não vira overlay de hardware: no Windows, o Chrome desenhava
+   o vídeo promovido por cima da película (sumia parado, voltava no scroll). */
+.hero-video video {
+  opacity: 0.99;
 }
 .hero-video-overlay {
   background:
-    linear-gradient(90deg, color-mix(in srgb, var(--bg) 88%, transparent) 0%, color-mix(in srgb, var(--bg) 55%, transparent) 100%),
+    linear-gradient(90deg, color-mix(in srgb, var(--bg) 68%, transparent) 0%, transparent 100%),
     linear-gradient(180deg, transparent 60%, var(--surface) 100%);
 }
 @media (prefers-reduced-motion: reduce) {
