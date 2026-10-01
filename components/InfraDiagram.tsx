@@ -1,52 +1,139 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+
 /**
- * Fluxograma animado das camadas de infraestrutura (substitui a lista 01-05).
- * Mesmo estilo do HeroDiagram: SVG + CSS puro, sinal percorrendo o caminho
- * em loop contínuo. prefers-reduced-motion desliga o sinal (ver globals.css).
+ * Zigzag animado das etapas de infraestrutura. Computador: horizontal, 01
+ * embaixo, alternando até o 07. Celular: vertical, 01 no alto descendo até o 07.
+ * A linha se desenha em velocidade constante (SEG por trecho) e cada etapa
+ * acende quando a linha chega nela. prefers-reduced-motion: tudo aceso, parado.
  */
-const CAMADAS = [
-  { n: "01", nome: "Organizar", desc: "Processos e fluxos" },
-  { n: "02", nome: "Conectar", desc: "Sistemas e dados" },
-  { n: "03", nome: "Automatizar", desc: "Tarefas repetitivas" },
-  { n: "04", nome: "Enxergar", desc: "Indicadores e dashboards" },
-  { n: "05", nome: "Inteligência", desc: "IA aplicada" },
+const ETAPAS = [
+  { n: "01", nome: "Identificar", desc: "Gaps" },
+  { n: "02", nome: "Organizar", desc: "Processos e fluxos" },
+  { n: "03", nome: "Conectar", desc: "Sistemas e dados" },
+  { n: "04", nome: "Automatizar", desc: "Tarefas repetitivas" },
+  { n: "05", nome: "Visualizar", desc: "Indicadores e dashboards" },
+  { n: "06", nome: "Acompanhar", desc: "Performance e resultados" },
+  { n: "07", nome: "Diagnóstico", desc: "Da sua operação", destaque: true },
 ];
 
-const GAP = 130;
-const Y = 44;
+const SEG = 1500; // ms por trecho entre etapas
+const DRAW = SEG * (ETAPAS.length - 1);
+const HOLD = 1600;
+const FADE = 600;
+const CYCLE = DRAW + HOLD + FADE;
 
-export function InfraDiagram() {
-  const path = CAMADAS.map((_, i) => `${i === 0 ? "M" : "L"}${i * GAP} ${Y}`).join(" ");
-  const width = GAP * (CAMADAS.length - 1);
+type Pt = [number, number];
+type Label = { x: number; y: number; anchor: "start" | "middle" | "end" };
+
+const LAYOUTS: {
+  key: string;
+  className: string;
+  viewBox: string;
+  pts: Pt[];
+  label: (i: number) => Label;
+}[] = [
+  {
+    key: "h",
+    className: "mx-auto hidden max-w-[900px] md:block",
+    viewBox: "-90 0 900 235",
+    pts: ETAPAS.map((_, i) => [i * 120, i % 2 ? 80 : 150]),
+    label: (i) => (i % 2 ? { x: 0, y: -62, anchor: "middle" } : { x: 0, y: 34, anchor: "middle" }),
+  },
+  {
+    key: "v",
+    // celular: zigzag estreito à esquerda, texto todo à direita (legível em 360px)
+    className: "iz-v mx-auto block max-w-[420px] md:hidden",
+    viewBox: "0 10 340 720",
+    pts: ETAPAS.map((_, i) => [i % 2 ? 80 : 24, 40 + i * 110]),
+    label: (i) => ({ x: i % 2 ? 38 : 94, y: -14, anchor: "start" }),
+  },
+];
+
+function Zigzag({ layout }: { layout: (typeof LAYOUTS)[number] }) {
+  const ref = useRef<SVGSVGElement>(null);
+  const d = layout.pts.map((p, i) => `${i ? "L" : "M"}${p[0]} ${p[1]}`).join(" ");
+
+  useEffect(() => {
+    const svg = ref.current;
+    if (!svg) return;
+    const live = svg.querySelector<SVGPathElement>(".iz-live")!;
+    const nodes = Array.from(svg.querySelectorAll<SVGGElement>(".iz-node"));
+
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      live.style.strokeDashoffset = "0";
+      nodes.forEach((n) => n.classList.add("on"));
+      return;
+    }
+
+    let raf = 0;
+    const t0 = performance.now();
+    const frame = (now: number) => {
+      const t = (now - t0) % CYCLE;
+      const p = Math.min(t / DRAW, 1); // linear: mesma velocidade em todo trecho
+      live.style.strokeDashoffset = String(1 - p);
+      live.style.opacity = String(t > DRAW + HOLD ? 1 - (t - DRAW - HOLD) / FADE : 1);
+      // trechos têm o mesmo comprimento, então a etapa i acende em i/(n-1)
+      nodes.forEach((n, i) =>
+        n.classList.toggle("on", t < DRAW + HOLD && p >= i / (nodes.length - 1) - 1e-3),
+      );
+      raf = requestAnimationFrame(frame);
+    };
+    raf = requestAnimationFrame(frame);
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   return (
     <svg
-      viewBox={`-70 0 ${width + 140} 88`}
-      className="infra-diagram h-auto w-full max-w-none"
-      style={{ minWidth: 640 }}
+      ref={ref}
+      viewBox={layout.viewBox}
+      className={`infra-diagram h-auto w-full ${layout.className}`}
       role="img"
-      aria-label="Fluxo da infraestrutura: organizar, conectar, automatizar, enxergar e aplicar inteligência, em movimento contínuo."
+      aria-label="Etapas da infraestrutura: identificar gaps, organizar processos, conectar sistemas, automatizar tarefas, visualizar indicadores, acompanhar resultados e diagnóstico da operação."
     >
-      <path d={path} className="id-link" stroke="var(--line-2)" strokeWidth="1.5" fill="none" />
-
-      <circle r="3.5" className="id-pulse" fill="var(--sinal)">
-        <animateMotion dur="6s" repeatCount="indefinite" path={path} />
-      </circle>
-
-      {CAMADAS.map((c, i) => (
-        <g key={c.n} transform={`translate(${i * GAP} ${Y})`}>
-          <circle r="6" fill="var(--surface)" stroke="var(--line-2)" strokeWidth="1.5" />
-          <circle r="2" fill="var(--ink-2)" />
-          <text y="-22" textAnchor="middle" className="mono id-num">
-            {c.n}
-          </text>
-          <text y="26" textAnchor="middle" className="id-nome">
-            {c.nome}
-          </text>
-          <text y="40" textAnchor="middle" className="mono id-desc">
-            {c.desc}
-          </text>
-        </g>
-      ))}
+      <path d={d} fill="none" stroke="var(--line-2)" strokeWidth="1.5" />
+      <path
+        d={d}
+        className="iz-live"
+        pathLength={1}
+        fill="none"
+        stroke="var(--sinal)"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeDasharray="1"
+        strokeDashoffset="1"
+      />
+      {ETAPAS.map((e, i) => {
+        const [x, y] = layout.pts[i];
+        const l = layout.label(i);
+        return (
+          <g key={e.n} className={`iz-node${"destaque" in e ? " iz-destaque" : ""}`} transform={`translate(${x} ${y})`}>
+            <circle r="8" className="iz-halo" />
+            <circle r="7" className="iz-ring" />
+            <circle r="2.5" className="iz-dot" />
+            <text x={l.x} y={l.y} textAnchor={l.anchor} className="iz-num">
+              {e.n}
+            </text>
+            <text x={l.x} y={l.y + 20} textAnchor={l.anchor} className="iz-nome">
+              {e.nome}
+            </text>
+            <text x={l.x} y={l.y + 36} textAnchor={l.anchor} className="iz-desc">
+              {e.desc}
+            </text>
+          </g>
+        );
+      })}
     </svg>
+  );
+}
+
+export function InfraDiagram() {
+  return (
+    <>
+      {LAYOUTS.map((l) => (
+        <Zigzag key={l.key} layout={l} />
+      ))}
+    </>
   );
 }

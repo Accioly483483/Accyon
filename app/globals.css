@@ -199,27 +199,80 @@
   .hero-diagram .hd-pulse {
     display: none;
   }
-  .infra-diagram .id-pulse {
-    display: none;
-  }
 }
 
-/* ---- Infra diagram (componente InfraDiagram) ---- */
-.infra-diagram .id-num {
+/* ---- Infra diagram (componente InfraDiagram): JS liga .on por etapa ---- */
+.infra-diagram .iz-num {
   font-family: var(--font-mono), monospace;
-  font-size: 8px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  fill: var(--ink-2);
-}
-.infra-diagram .id-nome {
   font-size: 11px;
+  letter-spacing: 0.14em;
+  fill: var(--ink-2);
+  transition: fill 0.4s;
+}
+.infra-diagram .iz-nome {
+  font-size: 15px;
+  fill: var(--ink-2);
+  transition: fill 0.4s;
+}
+.infra-diagram .iz-desc {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  fill: var(--ink-2);
+  opacity: 0.55;
+  transition: opacity 0.4s;
+}
+.infra-diagram .iz-ring {
+  fill: var(--surface);
+  stroke: var(--line-2);
+  stroke-width: 1.5;
+  transition: stroke 0.4s;
+}
+.infra-diagram .iz-dot {
+  fill: var(--ink-2);
+  transition: fill 0.4s;
+}
+.infra-diagram .iz-halo {
+  fill: none;
+  stroke: var(--sinal);
+  stroke-width: 1.5;
+  opacity: 0;
+}
+.infra-diagram.iz-v .iz-num {
+  font-size: 12px;
+}
+.infra-diagram.iz-v .iz-nome {
+  font-size: 18px;
+}
+.infra-diagram.iz-v .iz-desc {
+  font-size: 12.5px;
+}
+.infra-diagram .on .iz-num,
+.infra-diagram .on .iz-dot {
+  fill: var(--sinal);
+}
+.infra-diagram .on .iz-nome {
   fill: var(--ink);
 }
-.infra-diagram .id-desc {
-  font-size: 8px;
-  letter-spacing: 0.04em;
-  fill: var(--ink-2);
+.infra-diagram .on.iz-destaque .iz-nome {
+  fill: var(--sinal); /* único nome que acende em azul */
+}
+.infra-diagram .on .iz-desc {
+  opacity: 1;
+}
+.infra-diagram .on .iz-ring {
+  stroke: var(--sinal);
+}
+.infra-diagram .on .iz-halo {
+  animation: iz-halo 1s ease-out;
+}
+@keyframes iz-halo {
+  from { opacity: 0.9; r: 8; }
+  to { opacity: 0; r: 26; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .infra-diagram .on .iz-halo {
+    animation: none;
+  }
 }
 
 /* Hero com vídeo de fundo (net-connect1). Overlay na cor do Painel garante

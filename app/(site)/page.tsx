@@ -203,10 +203,11 @@ function Infraestrutura() {
       surface
     >
       <p className="max-w-measure text-corpo text-ink-2">
-        Organizar, conectar, automatizar, enxergar e aplicar inteligência.
-        Cada camada entra onde a operação precisa, conectada com a próxima.
+        Identificar, organizar, conectar, automatizar, visualizar e
+        acompanhar. Cada etapa entra onde a operação precisa, conectada com a
+        próxima.
       </p>
-      <div className="mt-12 overflow-x-auto">
+      <div className="mt-12">
         <InfraDiagram />
       </div>
       <p className="mt-12 max-w-measure text-corpo text-ink-2">
