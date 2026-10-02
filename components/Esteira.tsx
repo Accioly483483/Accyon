@@ -11,7 +11,7 @@ export const SINAIS_ESTEIRA = [
   "Não realizei o follow-up com o lead.",
   "Informações perdidas em conversas de WhatsApp.",
   "Informações cadastrais incompletas.",
-  "Não atualizei a etapa do negócio.",
+  "Etapa do negócio desatualizada.",
   "Enviei a proposta, mas não acompanhei depois.",
   "Agendamentos para o mesmo horário.",
   "Não enviei o lembrete da reunião para o lead.",

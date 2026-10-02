@@ -32,7 +32,7 @@ const FASES = [
     frases: [
       "Informações perdidas em conversas de WhatsApp.",
       "Informações cadastrais incompletas.",
-      "Não atualizei a etapa do negócio.",
+      "Etapa do negócio desatualizada.",
       "Processos não listados.",
       "Etapas puladas.",
       "Tarefas sem visibilidade para cobrar.",

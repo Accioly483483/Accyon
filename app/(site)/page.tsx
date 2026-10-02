@@ -5,7 +5,7 @@ import { OpenLeadModalButton } from "@/components/OpenLeadModalButton";
 import { Section } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
 import { InfraDiagram } from "@/components/InfraDiagram";
-import { NichosModal } from "@/components/NichosModal";
+import { SolucoesNichosModal } from "@/components/NichosModal";
 import { Pipoca } from "@/components/Pipoca";
 import { JsonLd } from "@/components/JsonLd";
 import Link from "next/link";
@@ -39,8 +39,8 @@ export default function Home() {
         ])}
       />
       <Hero />
-      <Problema />
       <OrdemEscondida />
+      <Problema />
       <Infraestrutura />
       <Frentes />
       <CtaEForm />
@@ -105,7 +105,6 @@ function Problema() {
           <span className="text-sinal">pequenas coisas</span>.
         </>
       }
-      surface
     >
       <Pipoca />
       <p className="mt-6 max-w-measure text-corpo text-ink-2">
@@ -132,19 +131,19 @@ function OrdemEscondida() {
           Nós encontramos a <span className="text-sinal">sua</span>.
         </>
       }
+      surface
     >
       <p className="max-w-measure text-corpo text-ink-2">
-        Quando o caminho fica claro, fica muito mais fácil decidir o que deve ser
+        Quando o caminho é claro, fica mais fácil decidir o que deve ser
         organizado, conectado ou automatizado.
       </p>
 
       <p className="mt-6 max-w-measure text-corpo text-ink-2">
-        Clique aqui e confira se algum desses nichos se assemelha a sua
-        operação:
+        Clique aqui e confira nossas especialidades:
       </p>
 
       <div className="mt-6">
-        <NichosModal />
+        <SolucoesNichosModal />
       </div>
     </Section>
   );
