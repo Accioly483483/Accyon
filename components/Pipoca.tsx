@@ -33,7 +33,7 @@ const FASES = [
       "Informações perdidas em conversas de WhatsApp.",
       "Informações cadastrais incompletas.",
       "Etapa do negócio desatualizada.",
-      "Processos não listados.",
+      "Processos não documentados.",
       "Etapas puladas.",
       "Tarefas sem visibilidade para cobrar.",
       "O processo funciona enquanto determinada pessoa está presente.",

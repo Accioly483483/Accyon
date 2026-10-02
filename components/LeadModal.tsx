@@ -63,15 +63,9 @@ export function LeadModalProvider({ children }: { children: React.ReactNode }) {
               </svg>
             </button>
             {formStep === 1 && (
-              <>
-                <p className="pr-10 text-subtitulo text-ink">
-                  Nos conte um pouco sobre sua operação.
-                </p>
-                <p className="mb-6 mt-3 max-w-measure text-corpo text-ink-2">
-                  Queremos saber um pouquinho melhor sobre você e como sua
-                  estrutura funciona.
-                </p>
-              </>
+              <p className="mb-6 pr-10 text-subtitulo text-ink">
+                Nos conte um pouco sobre <span className="text-sinal">você</span>.
+              </p>
             )}
             <LeadForm formSlug="modal" onStepChange={setFormStep} />
           </div>

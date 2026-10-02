@@ -16,7 +16,7 @@ export const SINAIS_ESTEIRA = [
   "Agendamentos para o mesmo horário.",
   "Não enviei o lembrete da reunião para o lead.",
   "Esqueci de reagendar um compromisso cancelado.",
-  "Processos não listados.",
+  "Processos não documentados.",
   "Etapas puladas.",
   "Tarefas sem visibilidade para cobrar.",
   "O processo funciona enquanto determinada pessoa está presente.",

@@ -216,7 +216,7 @@ export function LeadForm({
       <div className="animate-step-in py-10 text-center">
         <NodeMark size={36} className="mx-auto" />
         <p className="mx-auto mt-6 max-w-[28ch] text-subtitulo text-ink">
-          Recebemos sua operação. Agora vamos entender onde ela pode avançar.
+          Recebemos suas informações. Em instantes iremos te enviar uma mensagem.
         </p>
       </div>
     );
