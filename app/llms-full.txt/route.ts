@@ -1,46 +1,9 @@
-import { SERVICOS } from "@/content/servicos";
+import { SOLUCOES } from "@/content/solucoes";
 import { GLOSSARIO } from "@/content/glossario";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://accyon.com.br";
 
 export const dynamic = "force-static";
-
-function servicoMd(s: (typeof SERVICOS)[number]): string {
-  return `## ${s.nav}
-URL: ${SITE}/${s.slug}
-
-${s.h1}
-
-${s.abertura}
-
-### Quando você precisa disso
-${s.quando.map((q) => `- ${q}`).join("\n")}
-
-### ${s.ordemTitulo}
-${s.ordemTexto}
-
-### O que a Accyon entrega
-${s.entrega.map((d) => `- ${d.label}. ${d.text}`).join("\n")}
-
-### Como funciona
-${s.comoFunciona.map((l, i) => `${i + 1}. ${l}`).join("\n")}
-
-### Ferramentas
-${s.ferramentas}
-
-### Investimento
-${s.investimento}
-
-### Prazo
-${s.prazo}
-
-### Para quem não é
-${s.paraQuemNao}
-
-### Perguntas frequentes
-${s.faq.map(([q, a]) => `- ${q}\n  ${a}`).join("\n")}
-`;
-}
 
 export function GET() {
   const body = `# Accyon, conteúdo completo
@@ -57,7 +20,8 @@ A Accyon é uma empresa brasileira de infraestrutura operacional e comercial que
 4. Construir. Implementamos o que a operação precisa: CRM, automações, integrações, dashboards, sistemas, IA, fluxos de atendimento e processos digitais.
 5. Entregar. A estrutura passa a fazer parte da rotina.
 
-${SERVICOS.map(servicoMd).join("\n\n")}
+## Soluções
+${SOLUCOES.map((s) => `- ${s.nome}: ${SITE}/solucoes#${s.slug}`).join("\n")}
 
 ## Glossário
 ${GLOSSARIO.map((v) => `### ${v.termo}\n${v.definicao}`).join("\n\n")}

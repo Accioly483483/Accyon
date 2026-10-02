@@ -20,6 +20,20 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  // páginas de frente de trabalho retiradas do ar: 301 para a solução equivalente
+  async redirects() {
+    return [
+      ["infraestrutura-comercial", "ecossistema-comercial-operacional"],
+      ["sistemas", "desenvolvimento-de-softwares"],
+      ["atendimento-automatizado", "atendimento-automatizado"],
+      ["gestao-de-automacoes", "gestao-de-automacoes"],
+      ["criacao-de-paginas", "sites-paginas-e-bio"],
+    ].map(([de, para]) => ({
+      source: `/${de}`,
+      destination: `/solucoes#${para}`,
+      permanent: true,
+    }));
+  },
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },

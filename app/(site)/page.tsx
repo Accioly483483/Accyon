@@ -8,9 +8,7 @@ import { InfraDiagram } from "@/components/InfraDiagram";
 import { SolucoesNichosModal } from "@/components/NichosModal";
 import { Pipoca } from "@/components/Pipoca";
 import { JsonLd } from "@/components/JsonLd";
-import Link from "next/link";
 import type { Metadata } from "next";
-import { SERVICOS } from "@/content/servicos";
 import { graph, webPageNode } from "@/lib/schema";
 
 /* Copy: "Copy - site - Accyon.docx" (blueprint da Home). Tom pela lista
@@ -179,36 +177,38 @@ function Infraestrutura() {
   );
 }
 
-/* ============== FRENTES DE TRABALHO (Como funciona) ============== */
+/* ===================== COMO FUNCIONA (processo) ===================== */
+const PROCESSO = [
+  { nome: "Diagnóstico", texto: "Entendemos seu negócio, desafios e objetivos." },
+  { nome: "Planejamento", texto: "Criamos uma estratégia personalizada." },
+  { nome: "Desenvolvimento", texto: "Colocamos tudo em prática com excelência." },
+  { nome: "Entrega e Implementação", texto: "Testamos, ajustamos e colocamos on-line." },
+  { nome: "Suporte contínuo", texto: "Acompanhamos, otimizamos e escalamos resultados." },
+];
+
 function Frentes() {
   return (
     <Section
       id="como-funciona"
       eyebrow="Como funciona"
-      title={
-        <>
-          A infraestrutura entra por onde a{" "}
-          <span className="text-sinal">operação</span> mais precisa.
-        </>
-      }
+      title="Nosso processo:"
     >
-      <ul className="divide-y divide-line border-y border-line">
-        {SERVICOS.map((s) => (
-          <li key={s.slug}>
-            <Link
-              href={`/${s.slug}`}
-              className="group grid gap-2 py-5 transition-colors md:grid-cols-[15rem_1fr] md:gap-8"
-            >
-              <span className="whitespace-nowrap text-[1.05rem] font-medium text-ink transition-colors group-hover:text-sinal">
-                {s.nav}
-              </span>
-              <span className="max-w-measure text-corpo text-ink-2">
-                {s.resumo}
-              </span>
-            </Link>
+      <Reveal as="ol" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        {PROCESSO.map((p, i) => (
+          <li
+            key={p.nome}
+            className="group border border-line bg-surface p-6 transition-[border-color,box-shadow,transform] duration-300 ease-out hover:-translate-y-1 hover:border-sinal hover:shadow-[0_0_0_1px_var(--sinal),0_12px_40px_-12px_color-mix(in_srgb,var(--sinal)_45%,transparent)]"
+          >
+            <span className="mono inline-block border-b border-line-2 pb-2 pr-10 text-[2.25rem] font-semibold leading-none text-sinal transition-[border-color,padding] duration-300 ease-out group-hover:border-sinal group-hover:pr-16">
+              {String(i + 1).padStart(2, "0")}.
+            </span>
+            <p className="mt-6 text-[1.125rem] font-medium leading-snug text-ink transition-colors duration-300 group-hover:text-sinal">
+              {p.nome}
+            </p>
+            <p className="mt-3 text-corpo text-ink-2">{p.texto}</p>
           </li>
         ))}
-      </ul>
+      </Reveal>
     </Section>
   );
 }

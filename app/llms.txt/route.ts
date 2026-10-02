@@ -1,4 +1,4 @@
-import { SERVICOS } from "@/content/servicos";
+import { SOLUCOES } from "@/content/solucoes";
 import { GLOSSARIO } from "@/content/glossario";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://accyon.com.br";
@@ -10,8 +10,8 @@ export function GET() {
 
 > Consultoria de infraestrutura operacional e comercial para pequenas e médias empresas no Brasil. A Accyon analisa como pessoas, processos e ferramentas trabalham hoje, identifica gargalos e constrói estruturas sob medida com processos, CRM, automações, integrações, inteligência artificial e dashboards. O objetivo não é adicionar tecnologia, é fazer a operação funcionar com menos trabalho manual e menos dependência de pessoas específicas.
 
-## Frentes de trabalho
-${SERVICOS.map((s) => `- [${s.nav}](${SITE}/${s.slug}): ${s.resumo}`).join("\n")}
+## Soluções
+${SOLUCOES.map((s) => `- [${s.nome}](${SITE}/solucoes#${s.slug})`).join("\n")}
 
 ## Site
 - [Início](${SITE}/): o problema que a Accyon resolve e como funciona um projeto.

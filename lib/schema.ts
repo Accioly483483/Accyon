@@ -1,4 +1,3 @@
-import type { ServiceCopy } from "@/content/servicos";
 import type { Verbete } from "@/content/glossario";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://accyon.com.br";
@@ -126,31 +125,6 @@ export function howToNode(
       name: s.name,
       text: s.text,
     })),
-  };
-}
-
-export function serviceNode(s: ServiceCopy) {
-  const path = `/${s.slug}`;
-  return {
-    "@type": "Service",
-    "@id": `${url(path)}#servico`,
-    serviceType: s.nav,
-    name: s.h1,
-    url: url(path),
-    description: s.description,
-    provider: { "@id": ORG_ID },
-    areaServed: { "@type": "Country", name: "Brasil" },
-    audience: { "@type": "BusinessAudience", name: "Pequenas e médias empresas" },
-    offers: {
-      "@type": "Offer",
-      priceCurrency: "BRL",
-      priceSpecification: {
-        "@type": "PriceSpecification",
-        description:
-          "Investimento definido após diagnóstico, conforme o escopo da operação.",
-      },
-      url: url(path),
-    },
   };
 }
 

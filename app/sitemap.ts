@@ -1,5 +1,4 @@
 import type { MetadataRoute } from "next";
-import { SERVICOS } from "@/content/servicos";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://accyon.com.br";
 
@@ -13,7 +12,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     e("/", 1, "monthly"),
-    ...SERVICOS.map((s) => e(`/${s.slug}`, 0.9, "monthly")),
     e("/solucoes", 0.8, "monthly"),
     e("/quem-somos", 0.7, "yearly"),
     e("/faq", 0.6, "monthly"),
