@@ -98,12 +98,12 @@ export function Pipoca() {
   const fase = ROTEIRO[Math.max(0, tick) % ROTEIRO.length].fase;
 
   return (
-    <div className="grid items-center gap-10 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+    <div className="grid items-center gap-4 md:gap-10 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
       {parado ? null : (
-        <span key={fase} aria-hidden className="pipoca-emoji block text-center text-[8rem] leading-none md:text-[13rem]">
+        <span key={fase} aria-hidden className="pipoca-emoji block text-center text-[5rem] leading-none md:text-[13rem]">
           {"gif" in FASES[fase] ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={FASES[fase].gif} alt="" className="mx-auto w-[14rem] md:w-[20rem]" />
+            <img src={FASES[fase].gif} alt="" className="mx-auto w-[9rem] md:w-[20rem]" />
           ) : (
             FASES[fase].emoji
           )}
@@ -132,11 +132,11 @@ export function Pipoca() {
           ))}
         </div>
       ) : (
-        <div ref={palco} aria-hidden className="relative h-[30rem] md:h-[24rem]">
+        <div ref={palco} aria-hidden className="relative h-[21rem] md:h-[24rem]">
           {vivos.map(({ t, frase }) => (
             <div
               key={t}
-              className="pipoca-card absolute w-[72%] md:w-[58%] rounded-2xl border border-line bg-bg px-5 py-4 text-corpo leading-snug text-ink shadow-[0_12px_32px_rgb(0_0_0/0.35)]"
+              className="pipoca-card absolute w-[80%] md:w-[58%] rounded-2xl border border-line bg-bg px-5 py-4 text-corpo leading-snug text-ink shadow-[0_12px_32px_rgb(0_0_0/0.35)]"
               style={{ ...POS[t % POS.length], animationDuration: `${VIDA}ms` }}
             >
               {frase}
