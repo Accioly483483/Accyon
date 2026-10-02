@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { clsx } from "@/lib/clsx";
 import { OpenLeadModalButton } from "./OpenLeadModalButton";
 
@@ -18,6 +19,15 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const sentinel = useRef<HTMLDivElement | null>(null);
+  const pathname = usePathname();
+  const naComoFunciona = useNaComoFunciona(pathname);
+  // item ativo: rota atual; na Home, "Como funciona" enquanto a seção está na tela
+  const ativo = (href: string) =>
+    href === "/#como-funciona"
+      ? pathname === "/" && naComoFunciona
+      : href === "/"
+        ? pathname === "/" && !naComoFunciona
+        : pathname === href;
 
   useEffect(() => {
     const el = sentinel.current;
@@ -65,7 +75,13 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="whitespace-nowrap font-mono text-[0.68rem] uppercase tracking-[0.05em] text-ink-2 transition-colors hover:text-ink"
+                aria-current={ativo(item.href) ? "page" : undefined}
+                className={clsx(
+                  "whitespace-nowrap font-mono text-[0.68rem] uppercase tracking-[0.05em] underline-offset-[6px] transition-colors",
+                  ativo(item.href)
+                    ? "text-ink underline decoration-sinal decoration-2"
+                    : "text-ink-2 hover:text-ink",
+                )}
               >
                 {item.label}
               </Link>
@@ -122,7 +138,11 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="font-display text-subtitulo text-ink transition-all duration-300 ease-out"
+              aria-current={ativo(item.href) ? "page" : undefined}
+              className={clsx(
+                "font-display text-subtitulo transition-all duration-300 ease-out",
+                ativo(item.href) ? "text-sinal" : "text-ink",
+              )}
               style={{
                 transitionDelay: open ? `${100 + i * 50}ms` : "0ms",
                 opacity: open ? 1 : 0,
@@ -141,4 +161,20 @@ export function SiteHeader() {
       </div>
     </>
   );
+}
+
+/* Na Home, true enquanto a seção #como-funciona ocupa o meio da tela. */
+function useNaComoFunciona(pathname: string) {
+  const [dentro, setDentro] = useState(false);
+  useEffect(() => {
+    setDentro(false);
+    const el = pathname === "/" ? document.getElementById("como-funciona") : null;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setDentro(e.isIntersecting), {
+      rootMargin: "-45% 0px -45% 0px",
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [pathname]);
+  return dentro;
 }

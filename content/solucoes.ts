@@ -11,7 +11,7 @@ export const SOLUCOES: Solucao[] = [
   { slug: "ecossistema-comercial-operacional", nome: "Construção completa de ecossistema Comercial / Operacional" },
   { slug: "desenvolvimento-de-softwares", nome: "Desenvolvimento de Softwares (CRMs, Painéis de Estoque e Vendas, Esteiras Operacionais)" },
   { slug: "dashboards", nome: "Criação de Dashboards (Análise de Dados)" },
-  { slug: "sites-paginas-e-bio", nome: "Construção de Sites, Páginas e Bio" },
+  { slug: "sites-paginas-e-bio", nome: "Sites Institucionais, Páginas de vendas, Landing Pages e Bio" },
   { slug: "formularios-interativos", nome: "Formulários interativos" },
   { slug: "fluxos-de-conversa", nome: "Fluxos de conversa" },
   { slug: "atendimento-automatizado", nome: "Atendimento automatizado" },
