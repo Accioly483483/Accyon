@@ -45,8 +45,8 @@ const LAYOUTS: {
     key: "v",
     // celular: zigzag estreito à esquerda, texto todo à direita (legível em 360px)
     className: "iz-v mx-auto block max-w-[420px] md:hidden",
-    viewBox: "0 10 340 560",
-    pts: ETAPAS.map((_, i) => [i % 2 ? 80 : 24, 40 + i * 82]),
+    viewBox: "0 10 340 470",
+    pts: ETAPAS.map((_, i) => [i % 2 ? 80 : 24, 40 + i * 66]),
     label: (i) => ({ x: i % 2 ? 48 : 104, y: -14, anchor: "start" }),
   },
 ];

@@ -72,7 +72,7 @@ export function SolucoesNichosModal() {
 
   return (
     <>
-      <Button type="button" variant="ghost" onClick={() => setOpen(true)}>
+      <Button type="button" variant="primary" onClick={() => setOpen(true)}>
         Soluções e nichos
       </Button>
 
