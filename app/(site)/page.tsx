@@ -6,12 +6,12 @@ import { Section } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
 import { InfraDiagram } from "@/components/InfraDiagram";
 import { NichosModal } from "@/components/NichosModal";
+import { Pipoca } from "@/components/Pipoca";
 import { JsonLd } from "@/components/JsonLd";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { SERVICOS } from "@/content/servicos";
-import { ETAPAS, FAQ } from "@/content/home";
-import { graph, webPageNode, howToNode, faqPageNode } from "@/lib/schema";
+import { graph, webPageNode } from "@/lib/schema";
 
 /* Copy: "Copy - site - Accyon.docx" (blueprint da Home). Tom pela lista
    permitido/proibido do Brand Book. Sem travessão, aspas curvas. */
@@ -36,17 +36,6 @@ export default function Home() {
             "Accyon, infraestrutura para operações que precisam avançar",
             "A Accyon estrutura operações comerciais e empresariais conectando processos, pessoas e tecnologia.",
           ),
-          howToNode(
-            "Como a Accyon estrutura uma operação",
-            ETAPAS.map((e) => ({
-              name: e.nome,
-              text: [e.texto, e.itens?.join(", "), e.fecho]
-                .filter(Boolean)
-                .join(" "),
-            })),
-            "/",
-          ),
-          faqPageNode(FAQ as [string, string][], "/"),
         ])}
       />
       <Hero />
@@ -54,10 +43,6 @@ export default function Home() {
       <OrdemEscondida />
       <Infraestrutura />
       <Frentes />
-      <ComoFunciona />
-      <OQueEAccyon />
-      <Autoridade />
-      <Faq />
       <CtaEForm />
     </>
   );
@@ -66,7 +51,7 @@ export default function Home() {
 /* ============================ HERO (§06) ============================ */
 function Hero() {
   return (
-    <section className="hero-video relative isolate flex min-h-[85svh] items-center overflow-hidden py-16">
+    <section className="hero-video relative isolate -mt-16 flex min-h-[85svh] items-center overflow-hidden pb-16 pt-32 md:-mt-20 md:pt-36">
       {/* MP4 tem cor marcada como BT.601 (tom do player do Windows): sem a marca, o Chrome mudava o tom
           ao alternar entre overlay de hardware (parado) e composição (scroll). */}
       <video
@@ -85,31 +70,23 @@ function Hero() {
         <div>
           <div className="max-w-[46rem]">
             <Eyebrow>Infraestrutura operacional e comercial</Eyebrow>
-            <h1 className="mt-3 text-titulo font-medium text-ink">
-              Sua empresa já funciona. Mas ela pode{" "}
-              <span className="text-sinal">performar ainda melhor</span>.
+            <h1 className="mt-3 text-[clamp(2.25rem,5.2vw,4rem)] font-medium leading-[1.04] tracking-[-0.02em] text-ink">
+              Sua empresa já funciona. Mas ela pode performar{" "}
+              <span className="text-sinal">ainda melhor</span>.
             </h1>
-            <p className="mt-3 max-w-measure text-corpo text-ink-2">
-              A Accyon encontra onde sua operação trava e constrói uma
-              estrutura que faz o trabalho fluir.
-            </p>
-            <p className="mt-2 max-w-measure text-corpo text-ink-2">
-              Menos trabalho manual.
-              <br />
-              Mais clareza sobre a operação.
-              <br />
-              Uma empresa que não depende de você para cada movimento.
+            <p className="mt-4 max-w-[36rem] text-[clamp(1.125rem,1.6vw,1.375rem)] leading-snug text-ink-2">
+              Estruturação completa de processos operacionais e comerciais.
             </p>
             <div className="mt-5 flex flex-wrap items-center gap-4">
-              <OpenLeadModalButton variant="primary" arrow>
-                Falar sobre minha operação
+              <OpenLeadModalButton variant="primary" arrow className="font-semibold">
+                Falar com especialista
               </OpenLeadModalButton>
               <Button href="/#como-funciona" variant="ghost">
                 Entender como funciona
               </Button>
             </div>
             <p className="mono mt-3 text-legenda text-ink-2">
-              Projetos sob medida · A depender das suas particularidades
+              Projetos sob medida · Para empresas e empreendedores · Respeitando suas particularidades
             </p>
           </div>
         </div>
@@ -119,18 +96,6 @@ function Hero() {
 }
 
 /* ========================== PROBLEMA (§07) ========================== */
-const SINAIS = [
-  "Não dei a devolutiva no prazo.",
-  "Não realizei o follow-up com o lead.",
-  "Esqueci de avisar a área responsável.",
-  "Esqueci de agendar a reunião / consulta.",
-  "Não lancei a nota.",
-  "Informação não está mais na planilha.",
-  "Os dados não foram atualizados.",
-  "O processo não foi seguido.",
-  "Você precisa cobrar para descobrir se algo foi feito.",
-];
-
 function Problema() {
   return (
     <Section
@@ -142,14 +107,7 @@ function Problema() {
       }
       surface
     >
-      <Reveal as="ul" className="max-w-measure space-y-1">
-        {SINAIS.map((s) => (
-          <li key={s} className="flex gap-4 text-corpo text-ink">
-            <span aria-hidden className="mt-4 block h-px w-6 flex-none bg-line-2" />
-            <span>{s}</span>
-          </li>
-        ))}
-      </Reveal>
+      <Pipoca />
       <p className="mt-6 max-w-measure text-corpo text-ink-2">
         Isoladamente não parece nada grave. Mas no decorrer dos dias fica
         perceptível.
@@ -222,12 +180,12 @@ function Infraestrutura() {
   );
 }
 
-/* ==================== FRENTES DE TRABALHO ====================== */
+/* ============== FRENTES DE TRABALHO (Como funciona) ============== */
 function Frentes() {
   return (
     <Section
-      id="servicos"
-      eyebrow="Frentes de trabalho"
+      id="como-funciona"
+      eyebrow="Como funciona"
       title={
         <>
           A infraestrutura entra por onde a{" "}
@@ -256,141 +214,6 @@ function Frentes() {
   );
 }
 
-/* ==================== COMO FUNCIONA (§11) ====================== */
-function ComoFunciona() {
-  return (
-    <Section
-      id="como-funciona"
-      eyebrow="Como funciona"
-      title="Entender. Mapear. Estruturar. Construir. Entregar."
-      surface
-    >
-      <Reveal as="ol" className="border-t border-line">
-        {ETAPAS.map((e) => (
-          <li key={e.n} className="border-b border-line py-4">
-            <p className="text-corpo text-ink-2">
-              <span className="mono mr-3 text-legenda text-ink-2">{e.n}</span>
-              <span className="font-medium text-ink">{e.nome}. </span>
-              {e.texto}
-              {e.itens && " " + e.itens.join(", ") + "."}
-              {e.fecho && " " + e.fecho}
-            </p>
-          </li>
-        ))}
-      </Reveal>
-      <p className="mt-12 max-w-measure text-subtitulo text-ink">
-        Não entregamos uma coleção de ferramentas. Entregamos uma operação
-        estruturada.
-      </p>
-    </Section>
-  );
-}
-
-/* ================== O QUE É A ACCYON (§24, GEO) ================== */
-function OQueEAccyon() {
-  return (
-    <Section
-      title={
-        <>
-          O que é a{" "}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/logo/accyon-wordmark.png"
-            alt="Accyon"
-            className="inline-block h-[0.7em] w-auto align-baseline"
-          />
-          ?
-        </>
-      }
-    >
-      <div className="max-w-measure space-y-4 text-corpo text-ink-2">
-        <p>
-          A Accyon é uma empresa brasileira de infraestrutura operacional e
-          comercial que ajuda empreendedores e empresas a organizar, conectar e
-          automatizar suas operações.
-        </p>
-        <p>
-          A empresa analisa como pessoas, processos e ferramentas trabalham
-          atualmente, identifica gargalos e constrói estruturas sob medida
-          utilizando processos, CRM, automações, integrações, inteligência
-          artificial, dados e sistemas.
-        </p>
-        <p>
-          O objetivo não é adicionar tecnologia por adicionar, mas criar uma
-          operação mais clara, conectada e capaz de funcionar com menos trabalho
-          manual e dependência de pessoas específicas.
-        </p>
-      </div>
-    </Section>
-  );
-}
-
-/* ====================== AUTORIDADE (§15) ======================= */
-const PERGUNTAS_AUT = [
-  "Como o cliente chega?",
-  "Quem recebe?",
-  "O que acontece depois?",
-  "Onde a informação é registrada?",
-  "Quem precisa agir?",
-  "O que faz esse processo parar?",
-  "O que ainda depende de alguém lembrar?",
-  "O que poderia acontecer sozinho?",
-  "O que precisa continuar sendo humano?",
-  "Qual o volume / a entrada / ganhos / perdas (?)",
-];
-
-function Autoridade() {
-  return (
-    <Section
-      title={
-        <>
-          Uma operação melhor começa com{" "}
-          <span className="text-sinal">perguntas melhores</span>.
-        </>
-      }
-      surface
-    >
-      <ul className="grid max-w-3xl gap-3 sm:grid-cols-2">
-        {PERGUNTAS_AUT.map((p) => (
-          <li
-            key={p}
-            className="border border-line px-4 py-3 text-corpo text-ink"
-          >
-            {p}
-          </li>
-        ))}
-      </ul>
-      <p className="mt-10 max-w-measure text-corpo text-ink">
-        Entendemos primeiro. Construímos depois.
-      </p>
-    </Section>
-  );
-}
-
-/* ========================= FAQ (§25) ========================= */
-function Faq() {
-  return (
-    <Section eyebrow="Perguntas" title="Perguntas frequentes">
-      <div className="border-t border-line">
-        {FAQ.map(([q, a]) => (
-          <details key={q} className="group border-b border-line py-5">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-corpo text-ink [&::-webkit-details-marker]:hidden">
-              {q}
-              <span
-                aria-hidden
-                className="mono flex-none text-ink-2 transition-transform duration-200 group-open:rotate-45"
-              >
-                +
-              </span>
-            </summary>
-            <p className="mt-3 max-w-measure text-corpo text-ink-2">{a}</p>
-          </details>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
 /* =================== CTA (§16) + FORM (§17) =================== */
 function CtaEForm() {
   return (
@@ -399,18 +222,14 @@ function CtaEForm() {
       eyebrow="Próxima etapa"
       title={
         <>
-          Onde sua operação está perdendo{" "}
-          <span className="text-sinal">velocidade</span>?
+          Faça agora o seu{" "}
+          <span className="text-sinal">trabalho fluir</span> e sua{" "}
+          <span className="text-sinal">produtividade aumentar</span>.
         </>
       }
       surface
     >
-      <p className="max-w-measure text-corpo text-ink-2">
-        Conte para a Accyon como sua empresa funciona hoje. Vamos entender onde
-        existem gargalos e avaliar o que pode ser organizado, conectado ou
-        automatizado.
-      </p>
-      <div className="mt-12 border border-line p-6 md:p-10">
+      <div className="border border-line p-6 md:p-10">
         <p className="text-subtitulo text-ink">
           Conte um pouco sobre sua operação.
         </p>
@@ -418,8 +237,8 @@ function CtaEForm() {
           Queremos entender onde sua operação está hoje e o que está
           impedindo seu trabalho de fluir como poderia.
         </p>
-        <OpenLeadModalButton variant="primary" arrow>
-          Falar sobre minha operação
+        <OpenLeadModalButton variant="primary" arrow className="font-semibold">
+          Falar com especialista
         </OpenLeadModalButton>
         <p className="mono mt-8 text-legenda text-ink-2">
           Projeto sob medida · A depender das suas particularidades

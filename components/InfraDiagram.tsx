@@ -15,7 +15,7 @@ const ETAPAS = [
   { n: "04", nome: "Automatizar", desc: "Tarefas repetitivas" },
   { n: "05", nome: "Visualizar", desc: "Indicadores e dashboards" },
   { n: "06", nome: "Acompanhar", desc: "Performance e resultados" },
-  { n: "07", nome: "Diagnóstico", desc: "Da sua operação", destaque: true },
+  { n: "07", nome: "Clareza", desc: "Na sua operação", destaque: true },
 ];
 
 const SEG = 1500; // ms por trecho entre etapas
@@ -67,8 +67,9 @@ function Zigzag({ layout }: { layout: (typeof LAYOUTS)[number] }) {
       return;
     }
 
+    // só começa quando o diagrama entra na tela; até lá fica apagado, parado
     let raf = 0;
-    const t0 = performance.now();
+    let t0 = 0;
     const frame = (now: number) => {
       const t = (now - t0) % CYCLE;
       const p = Math.min(t / DRAW, 1); // linear: mesma velocidade em todo trecho
@@ -80,8 +81,20 @@ function Zigzag({ layout }: { layout: (typeof LAYOUTS)[number] }) {
       );
       raf = requestAnimationFrame(frame);
     };
-    raf = requestAnimationFrame(frame);
-    return () => cancelAnimationFrame(raf);
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (!e.isIntersecting) return;
+        io.disconnect();
+        t0 = performance.now();
+        raf = requestAnimationFrame(frame);
+      },
+      { threshold: 0.4 },
+    );
+    io.observe(svg);
+    return () => {
+      io.disconnect();
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   return (
@@ -90,7 +103,7 @@ function Zigzag({ layout }: { layout: (typeof LAYOUTS)[number] }) {
       viewBox={layout.viewBox}
       className={`infra-diagram h-auto w-full ${layout.className}`}
       role="img"
-      aria-label="Etapas da infraestrutura: identificar gaps, organizar processos, conectar sistemas, automatizar tarefas, visualizar indicadores, acompanhar resultados e diagnóstico da operação."
+      aria-label="Etapas da infraestrutura: identificar gaps, organizar processos, conectar sistemas, automatizar tarefas, visualizar indicadores, acompanhar resultados e clareza na sua operação."
     >
       <path d={d} fill="none" stroke="var(--line-2)" strokeWidth="1.5" />
       <path

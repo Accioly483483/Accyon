@@ -7,9 +7,10 @@ import { OpenLeadModalButton } from "./OpenLeadModalButton";
 
 const NAV = [
   { label: "Home", href: "/" },
+  { label: "Quem somos", href: "/quem-somos" },
   { label: "Como funciona", href: "/#como-funciona" },
   { label: "Infraestrutura", href: "/#infraestrutura" },
-  { label: "Serviços", href: "/#servicos" },
+  { label: "FAQ", href: "/faq" },
   { label: "Contato", href: "/contato" },
 ];
 
@@ -73,7 +74,7 @@ export function SiteHeader() {
 
           <div className="hidden lg:block">
             <OpenLeadModalButton variant="primary">
-              Falar sobre minha operação
+              Falar com especialista
             </OpenLeadModalButton>
           </div>
 
@@ -132,8 +133,8 @@ export function SiteHeader() {
             </Link>
           ))}
           <div className="mt-4" onClickCapture={() => setOpen(false)}>
-            <OpenLeadModalButton variant="primary" arrow>
-              Falar sobre minha operação
+            <OpenLeadModalButton variant="primary" arrow className="font-semibold">
+              Falar com especialista
             </OpenLeadModalButton>
           </div>
         </nav>

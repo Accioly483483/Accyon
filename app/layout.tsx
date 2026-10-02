@@ -15,7 +15,7 @@ const display = Space_Grotesk({
 
 const mono = IBM_Plex_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600"],
   variable: "--font-mono",
   display: "optional",
   fallback: ["ui-monospace", "Menlo", "monospace"],

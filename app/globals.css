@@ -295,3 +295,54 @@
     display: none;
   }
 }
+
+/* Esteira horizontal em loop (components/Esteira). Bordas laterais somem
+   com máscara para o card entrar e sair sem corte seco. */
+.esteira {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.esteira-trilho {
+  display: flex;
+  width: max-content;
+  gap: 0.75rem;
+  animation: esteira linear infinite;
+}
+.esteira:hover .esteira-trilho {
+  animation-play-state: paused;
+}
+@keyframes esteira {
+  from { transform: translateX(0); }
+  /* -50% menos meio gap: a segunda cópia cai exatamente onde a primeira começou */
+  to { transform: translateX(calc(-50% - 0.375rem)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .esteira {
+    overflow-x: auto;
+  }
+  .esteira-trilho {
+    animation: none;
+  }
+}
+
+/* Cards que pipocam (components/Pipoca): entra com leve sobressalto,
+   segura, sai. Duração vem do componente. */
+.pipoca-card {
+  animation: pipoca linear forwards;
+}
+@keyframes pipoca {
+  0% { opacity: 0; transform: scale(0.6); }
+  8% { opacity: 1; transform: scale(1.06); }
+  13% { transform: scale(1); }
+  85% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.96); }
+}
+/* troca de emoji entre fases */
+.pipoca-emoji {
+  animation: pipoca-emoji 500ms var(--ease-out);
+}
+@keyframes pipoca-emoji {
+  from { opacity: 0; transform: scale(0.7); }
+  to { opacity: 1; transform: scale(1); }
+}

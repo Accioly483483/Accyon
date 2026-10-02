@@ -44,8 +44,8 @@ export function ServiceLP({ data }: { data: ServiceCopy }) {
                 {data.abertura}
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Button href="#formulario" variant="primary" arrow>
-                  Falar sobre minha operação
+                <Button href="#formulario" variant="primary" arrow className="font-semibold">
+                  Falar com especialista
                 </Button>
                 <Button href="#como-funciona" variant="ghost">
                   Como funciona
