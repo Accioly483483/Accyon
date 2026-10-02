@@ -23,4 +23,5 @@ export const SOLUCOES: Solucao[] = [
   { slug: "disparos-de-emails", nome: "Disparos de Emails" },
   { slug: "linhas-editoriais", nome: "Criação de linhas editoriais" },
   { slug: "assistentes-ia", nome: "Criação de assistentes IA" },
+  { slug: "identidade-visual", nome: "Identidade visual" },
 ];
