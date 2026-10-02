@@ -15,6 +15,7 @@ ${SERVICOS.map((s) => `- [${s.nav}](${SITE}/${s.slug}): ${s.resumo}`).join("\n")
 
 ## Site
 - [Início](${SITE}/): o problema que a Accyon resolve e como funciona um projeto.
+- [Soluções](${SITE}/solucoes): as soluções que a Accyon constrói, uma seção por solução.
 - [Quem somos](${SITE}/quem-somos): o que é a Accyon.
 - [FAQ](${SITE}/faq): perguntas frequentes sobre o que a Accyon faz, ferramentas, duração e personalização dos projetos.
 - [Glossário](${SITE}/glossario): definições de infraestrutura operacional, automação de processos, CRM, integração de sistemas e outros termos.

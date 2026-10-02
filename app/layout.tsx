@@ -2,14 +2,14 @@ import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-// display: "optional" evita o reflow do swap de fonte (CLS). Numa visita com
-// cache frio e conexão lenta, essa carga usa a fallback; a partir da segunda a
-// fonte já está em cache. adjustFontFallback (padrão) aproxima as métricas.
+// display: "swap": a fonte da marca sempre entra quando termina de baixar.
+// Com "optional", a primeira visita ficava inteira na fallback (menus e botões
+// sem a mono). adjustFontFallback (padrão) aproxima as métricas e segura o CLS.
 const display = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-display",
-  display: "optional",
+  display: "swap",
   fallback: ["Helvetica Neue", "Arial", "sans-serif"],
 });
 
@@ -17,7 +17,7 @@ const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-mono",
-  display: "optional",
+  display: "swap",
   fallback: ["ui-monospace", "Menlo", "monospace"],
 });
 

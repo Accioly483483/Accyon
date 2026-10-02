@@ -7,9 +7,9 @@ import { OpenLeadModalButton } from "./OpenLeadModalButton";
 
 const NAV = [
   { label: "Home", href: "/" },
-  { label: "Quem somos", href: "/quem-somos" },
+  { label: "Soluções", href: "/solucoes" },
   { label: "Como funciona", href: "/#como-funciona" },
-  { label: "Infraestrutura", href: "/#infraestrutura" },
+  { label: "Quem somos", href: "/quem-somos" },
   { label: "FAQ", href: "/faq" },
   { label: "Contato", href: "/contato" },
 ];

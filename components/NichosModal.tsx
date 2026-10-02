@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Button } from "./Button";
+import { SOLUCOES } from "@/content/solucoes";
 
 const NICHOS = [
   "Academia",
@@ -26,27 +28,23 @@ const NICHOS = [
   "Saúde: dentista, nutricionista, pediatra, ginecologista, oftalmologista",
 ];
 
-const SOLUCOES = [
-  "Construção completa de ecossistema Comercial / Operacional",
-  "Desenvolvimento de Softwares (CRMs, Painéis de Estoque e Vendas, Esteiras Operacionais)",
-  "Criação de Dashboards (Análise de Dados)",
-  "Construção de Sites, Páginas e Bio",
-  "Formulários interativos",
-  "Fluxos de conversa",
-  "Atendimento automatizado",
-  "Disparos de mensagem - Whatsapp",
-  "Follow-ups automatizados",
-  "Gestão de automações",
-  "Automações sob medida",
-  "Fluxos de atendimento",
-  "Disparos de Emails",
-  "Criação de linhas editoriais",
-  "Criação de assistentes IA",
-];
 
 const ABAS = [
-  { id: "solucoes", rotulo: "Soluções", titulo: "Soluções", itens: SOLUCOES, colunas: false },
-  { id: "nichos", rotulo: "Nichos", titulo: "Nichos atendidos", itens: NICHOS, colunas: true },
+  // soluções levam à seção correspondente em /solucoes; nichos são só lista
+  {
+    id: "solucoes",
+    rotulo: "Soluções",
+    titulo: "Soluções",
+    itens: SOLUCOES.map((x) => ({ texto: x.nome, href: `/solucoes#${x.slug}` })),
+    colunas: false,
+  },
+  {
+    id: "nichos",
+    rotulo: "Nichos",
+    titulo: "Nichos atendidos",
+    itens: NICHOS.map((texto) => ({ texto, href: undefined as string | undefined })),
+    colunas: true,
+  },
 ];
 
 export function SolucoesNichosModal() {
@@ -116,12 +114,22 @@ export function SolucoesNichosModal() {
             <p className="mt-6 text-subtitulo text-ink">{atual.titulo}</p>
             <div className="mt-6 max-h-[60vh] overflow-y-auto pr-2">
               <ul key={atual.id} className={`grid gap-3 ${atual.colunas ? "sm:grid-cols-2" : ""}`}>
-                {atual.itens.map((n) => (
-                  <li
-                    key={n}
-                    className="border border-line px-4 py-3 text-corpo text-ink"
-                  >
-                    {n}
+                {atual.itens.map(({ texto, href }) => (
+                  <li key={texto}>
+                    {href ? (
+                      <Link
+                        href={href}
+                        onClick={() => setOpen(false)}
+                        className="group flex items-center justify-between gap-4 border border-line px-4 py-3 text-corpo text-ink transition-colors hover:border-sinal hover:text-sinal"
+                      >
+                        {texto}
+                        <span aria-hidden className="flex-none text-ink-2 transition-colors group-hover:text-sinal">
+                          →
+                        </span>
+                      </Link>
+                    ) : (
+                      <span className="block border border-line px-4 py-3 text-corpo text-ink">{texto}</span>
+                    )}
                   </li>
                 ))}
               </ul>
