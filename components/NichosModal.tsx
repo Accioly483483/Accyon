@@ -36,14 +36,12 @@ const ABAS = [
     rotulo: "Soluções",
     titulo: "Soluções",
     itens: SOLUCOES.map((x) => ({ texto: x.nome, href: `/solucoes#${x.slug}` })),
-    colunas: false,
   },
   {
     id: "nichos",
     rotulo: "Nichos",
     titulo: "Nichos atendidos",
     itens: NICHOS.map((texto) => ({ texto, href: undefined as string | undefined })),
-    colunas: true,
   },
 ];
 
@@ -113,7 +111,7 @@ export function SolucoesNichosModal() {
             </div>
             <p className="mt-6 text-subtitulo text-ink">{atual.titulo}</p>
             <div className="mt-6 max-h-[60vh] overflow-y-auto pr-2">
-              <ul key={atual.id} className={`grid gap-3 ${atual.colunas ? "sm:grid-cols-2" : ""}`}>
+              <ul key={atual.id} className="grid gap-3">
                 {atual.itens.map(({ texto, href }) => (
                   <li key={texto}>
                     {href ? (
