@@ -32,7 +32,12 @@ const nextConfig: NextConfig = {
       source: `/${de}`,
       destination: `/solucoes#${para}`,
       permanent: true,
-    }));
+    })).concat({
+      // "Quem somos" virou pop-up na Home (faixa acima do rodapé)
+      source: "/quem-somos",
+      destination: "/#quem-somos",
+      permanent: true,
+    });
   },
   async headers() {
     return [

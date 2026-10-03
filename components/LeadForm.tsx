@@ -61,11 +61,14 @@ export function LeadForm({
   servicos = SERVICOS_PADRAO,
   redirectUrl,
   onStepChange,
+  compact,
 }: {
   formSlug: string;
   servicos?: string[];
   redirectUrl?: string;
   onStepChange?: (step: number) => void;
+  /** Versão mais baixa (página /contato caber na tela): serviços em 2 colunas, respiros menores. */
+  compact?: boolean;
 }) {
   const [step, setStep] = useState(1);
   const [data, setData] = useState<FormData>(EMPTY);
@@ -224,7 +227,7 @@ export function LeadForm({
 
   return (
     <div>
-      <div className="mb-6">
+      <div className={compact ? "mb-4" : "mb-6"}>
         <div className="h-0.5 w-full overflow-hidden bg-line">
           <div
             className="h-full bg-sinal transition-[width] duration-500 ease-out"
@@ -305,10 +308,10 @@ export function LeadForm({
         {step === 5 && (
           <div>
             <Question>Quais serviços você busca?</Question>
-            <p className="mb-6 text-legenda text-ink-2">
+            <p className={`${compact ? "-mt-2 mb-4" : "mb-6"} text-legenda text-ink-2`}>
               Marque pelo menos um. Pode marcar mais de um.
             </p>
-            <div className="space-y-3">
+            <div className={compact ? "grid gap-2 md:grid-cols-2" : "space-y-3"}>
               {servicos.map((s) => {
                 const on = data.servicos.includes(s);
                 return (
@@ -317,7 +320,7 @@ export function LeadForm({
                     type="button"
                     onClick={() => toggleServico(s)}
                     aria-pressed={on}
-                    className={`flex w-full items-center justify-between gap-3 border bg-surface p-4 text-left text-corpo transition-colors ${
+                    className={`flex w-full items-center justify-between gap-3 border bg-surface text-left transition-colors ${compact ? "px-3 py-2 text-[1rem] leading-snug" : "p-4 text-corpo"} ${
                       on ? "border-sinal text-ink" : "border-line-2 text-ink-2 hover:text-ink"
                     }`}
                   >
@@ -349,7 +352,7 @@ export function LeadForm({
               placeholder="Escreva com suas palavras."
               aria-label="O que você gostaria que fosse diferente em seu processo?"
               aria-required="true"
-              rows={5}
+              rows={compact ? 3 : 5}
               className={`${inputCls} resize-y`}
             />
           </div>
@@ -390,7 +393,7 @@ export function LeadForm({
         </div>
 
         {step === TOTAL && (
-          <p className="mt-6 text-legenda text-ink-2">
+          <p className={`${compact ? "mt-3" : "mt-6"} text-legenda text-ink-2`}>
             Suas respostas serão usadas apenas para entender o contexto da sua
             operação. Veja a{" "}
             <a

@@ -13,7 +13,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     e("/", 1, "monthly"),
     e("/solucoes", 0.8, "monthly"),
-    e("/quem-somos", 0.7, "yearly"),
     e("/faq", 0.6, "monthly"),
     e("/glossario", 0.6, "monthly"),
     e("/contato", 0.7, "yearly"),

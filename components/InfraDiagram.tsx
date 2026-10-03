@@ -36,7 +36,7 @@ const LAYOUTS: {
 }[] = [
   {
     key: "h",
-    className: "mx-auto hidden max-w-[900px] md:block",
+    className: "mx-auto hidden max-w-[800px] md:block",
     viewBox: "-90 0 900 235",
     pts: ETAPAS.map((_, i) => [i * 120, i % 2 ? 80 : 150]),
     label: (i) => (i % 2 ? { x: 0, y: -62, anchor: "middle" } : { x: 0, y: 34, anchor: "middle" }),

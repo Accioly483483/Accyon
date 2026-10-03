@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import type { Solucao } from "@/content/solucoes";
+import { Popup } from "./Popup";
 
 /** Card numerado (visual do "Nosso processo"); clique abre <dialog> com os textos.
     O texto fica no HTML mesmo fechado (indexável). /solucoes#slug abre o pop-up. */
@@ -21,7 +22,7 @@ export function SolucaoCard({ s, n }: { s: Solucao; n: number }) {
   }, [s.slug]);
 
   return (
-    <li id={s.slug} className="scroll-mt-24">
+    <li id={s.slug}>
       <button
         type="button"
         onClick={() => ref.current?.showModal()}
@@ -42,38 +43,19 @@ export function SolucaoCard({ s, n }: { s: Solucao; n: number }) {
         </span>
       </button>
 
-      <dialog
-        ref={ref}
-        aria-label={s.nome}
-        onClick={(e) => {
-          if (e.target === e.currentTarget) ref.current?.close(); // clique no fundo
-        }}
-        className="m-auto w-[calc(100%-2rem)] max-w-lg rounded-2xl border border-line bg-bg p-0 text-ink backdrop:bg-bg/90 backdrop:backdrop-blur"
-      >
-        <div className="relative p-6 md:p-8">
-          <button
-            type="button"
-            aria-label="Fechar"
-            onClick={() => ref.current?.close()}
-            className="press absolute right-4 top-4 grid h-9 w-9 place-items-center text-ink-2 transition-colors hover:text-ink"
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-              <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.5" />
-            </svg>
-          </button>
-          <span className="mono inline-block border-b border-sinal pb-2 pr-12 text-[1.5rem] font-semibold leading-none text-sinal">
-            {num}
-          </span>
-          <h2 className="mt-5 pr-8 text-[1.375rem] font-medium leading-snug tracking-[-0.01em] text-ink">{s.nome}</h2>
-          <div className="mt-4 space-y-4">
-            {s.textos.map((t, j) => (
-              <p key={j} className="text-[1rem] leading-[1.75] text-ink-2">
-                {t}
-              </p>
-            ))}
-          </div>
+      <Popup ref={ref} label={s.nome}>
+        <span className="mono inline-block border-b border-sinal pb-2 pr-12 text-[1.5rem] font-semibold leading-none text-sinal">
+          {num}
+        </span>
+        <h2 className="mt-5 pr-8 text-[1.375rem] font-medium leading-snug tracking-[-0.01em] text-ink">{s.nome}</h2>
+        <div className="mt-4 space-y-4">
+          {s.textos.map((t, j) => (
+            <p key={j} className="text-[1rem] leading-[1.75] text-ink-2">
+              {t}
+            </p>
+          ))}
         </div>
-      </dialog>
+      </Popup>
     </li>
   );
 }

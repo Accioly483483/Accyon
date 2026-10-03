@@ -10,7 +10,7 @@ const NAV = [
   { label: "Home", href: "/" },
   { label: "Soluções", href: "/solucoes" },
   { label: "Como funciona", href: "/#como-funciona" },
-  { label: "Quem somos", href: "/quem-somos" },
+  { label: "Quem somos", href: "/#quem-somos" },
   { label: "FAQ", href: "/faq" },
   { label: "Contato", href: "/contato" },
 ];
@@ -20,13 +20,13 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const sentinel = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
-  const naComoFunciona = useNaComoFunciona(pathname);
-  // item ativo: rota atual; na Home, "Como funciona" enquanto a seção está na tela
+  const secao = useSecaoNaTela(pathname);
+  // item ativo: rota atual; na Home, a seção (#como-funciona / #quem-somos) que está na tela
   const ativo = (href: string) =>
-    href === "/#como-funciona"
-      ? pathname === "/" && naComoFunciona
+    href.startsWith("/#")
+      ? pathname === "/" && secao === href.slice(2)
       : href === "/"
-        ? pathname === "/" && !naComoFunciona
+        ? pathname === "/" && !secao
         : pathname === href;
 
   useEffect(() => {
@@ -163,18 +163,29 @@ export function SiteHeader() {
   );
 }
 
-/* Na Home, true enquanto a seção #como-funciona ocupa o meio da tela. */
-function useNaComoFunciona(pathname: string) {
-  const [dentro, setDentro] = useState(false);
+/* Na Home, qual seção com item no menu está na tela: #como-funciona quando ocupa
+   o meio da tela; #quem-somos (faixa curta no fim, nunca chega ao meio) quando
+   aparece inteira. Fora delas, null. */
+function useSecaoNaTela(pathname: string) {
+  const [secao, setSecao] = useState<"como-funciona" | "quem-somos" | null>(null);
   useEffect(() => {
-    setDentro(false);
-    const el = pathname === "/" ? document.getElementById("como-funciona") : null;
-    if (!el) return;
-    const io = new IntersectionObserver(([e]) => setDentro(e.isIntersecting), {
-      rootMargin: "-45% 0px -45% 0px",
+    setSecao(null);
+    if (pathname !== "/") return;
+    const visto = { "como-funciona": false, "quem-somos": false };
+    const regras: [keyof typeof visto, IntersectionObserverInit][] = [
+      ["como-funciona", { rootMargin: "-45% 0px -45% 0px" }],
+      ["quem-somos", { threshold: 1 }],
+    ];
+    const ios = regras.map(([id, opts]) => {
+      const io = new IntersectionObserver(([e]) => {
+        visto[id] = e.isIntersecting;
+        setSecao(visto["quem-somos"] ? "quem-somos" : visto["como-funciona"] ? "como-funciona" : null);
+      }, opts);
+      const el = document.getElementById(id);
+      if (el) io.observe(el);
+      return io;
     });
-    io.observe(el);
-    return () => io.disconnect();
+    return () => ios.forEach((io) => io.disconnect());
   }, [pathname]);
-  return dentro;
+  return secao;
 }

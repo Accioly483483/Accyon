@@ -100,10 +100,10 @@ export function Pipoca() {
   return (
     <div className="grid items-center gap-4 md:gap-10 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
       {parado ? null : (
-        <span key={fase} aria-hidden className="pipoca-emoji block text-center text-[5rem] leading-none md:text-[13rem]">
+        <span key={fase} aria-hidden className="pipoca-emoji block text-center text-[5rem] leading-none md:text-[10rem]">
           {"gif" in FASES[fase] ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={FASES[fase].gif} alt="" className="mx-auto w-[9rem] md:w-[20rem]" />
+            <img src={FASES[fase].gif} alt="" className="mx-auto w-[9rem] md:w-[15rem]" />
           ) : (
             FASES[fase].emoji
           )}
@@ -132,7 +132,7 @@ export function Pipoca() {
           ))}
         </div>
       ) : (
-        <div ref={palco} aria-hidden className="relative h-[21rem] md:h-[24rem]">
+        <div ref={palco} aria-hidden className="relative h-[21rem] md:h-[19rem]">
           {vivos.map(({ t, frase }) => (
             <div
               key={t}

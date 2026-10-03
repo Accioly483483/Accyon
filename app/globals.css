@@ -51,6 +51,13 @@
   html {
     background: var(--bg);
     -webkit-text-size-adjust: 100%;
+    /* âncoras (#secao) param abaixo do header sticky (65px mobile, 81px md+) */
+    scroll-padding-top: 65px;
+  }
+  @media (min-width: 768px) {
+    html {
+      scroll-padding-top: 81px;
+    }
   }
 
   body {

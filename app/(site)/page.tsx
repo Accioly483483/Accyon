@@ -11,6 +11,7 @@ import { JsonLd } from "@/components/JsonLd";
 import type { Metadata } from "next";
 import { graph, webPageNode } from "@/lib/schema";
 import { PROCESSO } from "@/content/home";
+import { QuemSomos } from "@/components/QuemSomos";
 
 /* Copy: "Copy - site - Accyon.docx" (blueprint da Home). Tom pela lista
    permitido/proibido do Brand Book. Sem travessão, aspas curvas. */
@@ -43,6 +44,7 @@ export default function Home() {
       <Infraestrutura />
       <Frentes />
       <CtaEForm />
+      <QuemSomos />
     </>
   );
 }
@@ -104,14 +106,15 @@ function Problema() {
           <span className="text-sinal">pequenas coisas</span>.
         </>
       }
+      compact
     >
       <Pipoca />
-      <p className="mt-6 max-w-measure text-corpo text-ink-2">
+      <p className="mt-4 max-w-measure text-corpo text-ink-2">
         Isoladamente não parece nada grave. Mas no decorrer dos dias fica
         perceptível.
       </p>
       <Reveal>
-        <p className="mt-8 max-w-[34ch] text-subtitulo text-ink">
+        <p className="mt-5 max-w-[48ch] text-subtitulo text-ink">
           O problema não é falta de esforço. É não possuir a{" "}
           <span className="text-sinal">estrutura certa</span>.
         </p>
@@ -161,16 +164,17 @@ function Infraestrutura() {
         </>
       }
       surface
+      compact
     >
       <p className="max-w-measure text-corpo text-ink-2">
         Identificar, organizar, conectar, automatizar, visualizar e
         acompanhar. Cada etapa entra onde a operação precisa, conectada com a
         próxima.
       </p>
-      <div className="mt-12">
+      <div className="mt-6">
         <InfraDiagram />
       </div>
-      <p className="mt-12 max-w-measure text-corpo text-ink-2">
+      <p className="mt-6 max-w-measure text-corpo text-ink-2">
         A tecnologia varia. O objetivo não. Construir uma operação mais clara,
         conectada e capaz de avançar.
       </p>
@@ -221,19 +225,20 @@ function CtaEForm() {
         </>
       }
       surface
+      compact
     >
-      <div className="border border-line p-6 md:p-10">
+      <div className="border border-line p-6 md:p-8">
         <p className="text-subtitulo text-ink">
           Conte um pouco sobre sua operação.
         </p>
-        <p className="mb-10 mt-3 max-w-measure text-corpo text-ink-2">
+        <p className="mb-7 mt-3 max-w-measure text-corpo text-ink-2">
           Queremos entender onde sua operação está hoje e o que está
           impedindo seu trabalho de fluir como poderia.
         </p>
         <OpenLeadModalButton variant="primary" arrow className="font-semibold">
           Falar com especialista
         </OpenLeadModalButton>
-        <p className="mono mt-8 text-legenda text-ink-2">
+        <p className="mono mt-6 text-legenda text-ink-2">
           Projeto sob medida · A depender das suas particularidades
         </p>
       </div>

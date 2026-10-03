@@ -5,6 +5,7 @@ import { Eyebrow } from "./Eyebrow";
 /**
  * Bloco de seção da landing. Espaço macro do Brand Book (py-24 a py-40).
  * Eyebrow opcional (usar como sistema, não em toda seção).
+ * `compact`: respiro menor, para a seção caber numa tela de notebook (~650px úteis).
  */
 export function Section({
   id,
@@ -12,6 +13,7 @@ export function Section({
   title,
   intro,
   surface,
+  compact,
   className,
   children,
 }: {
@@ -20,17 +22,18 @@ export function Section({
   title?: React.ReactNode;
   intro?: React.ReactNode;
   surface?: boolean;
+  compact?: boolean;
   className?: string;
   children?: React.ReactNode;
 }) {
   return (
     <section
       id={id}
-      className={clsx("py-section", surface && "bg-surface", className)}
+      className={clsx(compact ? "py-10 md:py-12" : "py-section", surface && "bg-surface", className)}
     >
       <Container>
         {(eyebrow || title || intro) && (
-          <div className="mb-8 max-w-measure md:mb-10">
+          <div className={clsx("max-w-measure", compact ? "mb-6 md:mb-7" : "mb-8 md:mb-10")}>
             {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
             {title && (
               <h2 className="mt-4 text-titulo font-medium text-ink">{title}</h2>
