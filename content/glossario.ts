@@ -33,6 +33,12 @@ export const GLOSSARIO: Verbete[] = [
       "Automação comercial é a aplicação da automação de processos à área de vendas: qualificação de contatos, follow-up com prazo, envio de proposta e atualização do CRM sem depender da memória de um vendedor.",
   },
   {
+    termo: "Funil de vendas",
+    slug: "funil-de-vendas",
+    definicao:
+      "Funil de vendas é o caminho que um contato percorre até virar cliente, dividido em etapas: primeiro contato, qualificação, proposta, negociação e fechamento. Enxergar o funil mostra em que etapa as vendas travam ou se perdem.",
+  },
+  {
     termo: "CRM",
     slug: "crm",
     definicao:

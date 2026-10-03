@@ -34,7 +34,7 @@ export default function Contato() {
           </h1>
           <p className="mt-4 text-corpo text-ink-2">
             Queremos entender onde sua operação está e o que está travando o
-            trabalho.
+            trabalho e as vendas.
           </p>
           <p className="mt-3 text-legenda text-ink-2">
             Suas respostas servem só para entender o contexto da sua operação antes

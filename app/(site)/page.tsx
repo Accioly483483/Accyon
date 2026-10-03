@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Accyon, infraestrutura para operações que precisam avançar",
     description:
-      "A Accyon estrutura operações comerciais e empresariais conectando processos, pessoas e tecnologia. Menos trabalho manual, mais clareza e velocidade.",
+      "A Accyon estrutura operações comerciais e empresariais conectando processos, pessoas e tecnologia. Menos trabalho manual, mais clareza, velocidade e vendas.",
     url: "/",
   },
 };
@@ -76,7 +76,7 @@ function Hero() {
               <span className="text-sinal">ainda melhor</span>.
             </h1>
             <p className="mt-4 max-w-[36rem] text-[clamp(1.125rem,1.6vw,1.375rem)] leading-snug text-ink-2">
-              Estruturação completa de processos operacionais e comerciais.
+              Estruturação completa de processos operacionais e de vendas.
             </p>
             <div className="mt-5 flex flex-wrap items-center gap-4">
               <OpenLeadModalButton variant="primary" arrow className="font-semibold">
@@ -220,8 +220,8 @@ function CtaEForm() {
       title={
         <>
           Faça agora o seu{" "}
-          <span className="text-sinal">trabalho fluir</span> e sua{" "}
-          <span className="text-sinal">produtividade aumentar</span>.
+          <span className="text-sinal">trabalho fluir</span> e suas{" "}
+          <span className="text-sinal">vendas aumentarem</span>.
         </>
       }
       surface

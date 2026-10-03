@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     template: "%s | Accyon",
   },
   description:
-    "A Accyon estrutura operações comerciais e empresariais conectando processos, pessoas e tecnologia. Menos trabalho manual, mais clareza e velocidade.",
+    "A Accyon estrutura operações comerciais e empresariais conectando processos, pessoas e tecnologia. Menos trabalho manual, mais clareza, velocidade e vendas.",
   robots: { index: true, follow: true },
 };
 

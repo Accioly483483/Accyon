@@ -43,7 +43,7 @@ export default function Solucoes() {
             <span className="text-sinal">funcionar melhor</span>.
           </>
         }
-        intro="Da estrutura comercial às automações do dia a dia: ferramentas e processos que fazem sua empresa ganhar clareza, velocidade e autonomia."
+        intro="Da estrutura de vendas às automações do dia a dia: ferramentas e processos que fazem sua empresa ganhar clareza, velocidade e autonomia."
       >
         <Reveal as="ol" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {SOLUCOES.map((s, i) => (

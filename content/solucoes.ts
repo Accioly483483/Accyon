@@ -45,7 +45,7 @@ export const SOLUCOES: Solucao[] = [
     slug: "atendimento-automatizado",
     nome: "Atendimento Automatizado",
     textos: [
-      "Atendimento para que cada contato tenha contexto, direção e próximo passo.",
+      "Atendimento para que cada contato tenha contexto, direção e próximo passo até a venda.",
       "Respostas, encaminhamentos e rotinas de atendimento funcionando de forma estruturada.",
     ],
   },
@@ -54,7 +54,7 @@ export const SOLUCOES: Solucao[] = [
     nome: "Follow-ups Automatizados",
     textos: [
       "Seu cliente ou lead não deveria depender da memória de alguém para receber um retorno.",
-      "Criamos fluxos que acompanham cada oportunidade no momento certo.",
+      "Criamos fluxos que acompanham cada oportunidade no momento certo, para nenhuma venda se perder.",
     ],
   },
   {
@@ -62,7 +62,7 @@ export const SOLUCOES: Solucao[] = [
     nome: "Disparos de WhatsApp",
     textos: [
       "Comunique-se com sua base de forma estruturada, segmentada e integrada à sua operação.",
-      "Campanhas, avisos, lembretes e comunicações automatizadas.",
+      "Campanhas de vendas, avisos, lembretes e comunicações automatizadas.",
     ],
   },
   {

@@ -8,7 +8,7 @@ export const dynamic = "force-static";
 export function GET() {
   const body = `# Accyon
 
-> Consultoria de infraestrutura operacional e comercial para pequenas e médias empresas no Brasil. A Accyon analisa como pessoas, processos e ferramentas trabalham hoje, identifica gargalos e constrói estruturas sob medida com processos, CRM, automações, integrações, inteligência artificial e dashboards. O objetivo não é adicionar tecnologia, é fazer a operação funcionar com menos trabalho manual e menos dependência de pessoas específicas.
+> Consultoria de infraestrutura operacional e comercial para pequenas e médias empresas no Brasil. A Accyon analisa como pessoas, processos e ferramentas trabalham hoje, identifica gargalos e constrói estruturas sob medida com processos, CRM, automações, integrações, inteligência artificial e dashboards. O objetivo não é adicionar tecnologia, é fazer a operação funcionar com menos trabalho manual, menos dependência de pessoas específicas e vender mais.
 
 ## Soluções
 ${SOLUCOES.map((s) => `- [${s.nome}](${SITE}/solucoes#${s.slug})`).join("\n")}

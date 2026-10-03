@@ -13,6 +13,8 @@ const KNOWS_ABOUT = [
   "Infraestrutura comercial",
   "Automação de processos empresariais",
   "Automação comercial",
+  "Automação de vendas",
+  "Processo de vendas",
   "Integração de sistemas",
   "CRM",
   "Atendimento automatizado",

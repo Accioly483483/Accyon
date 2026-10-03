@@ -14,7 +14,7 @@ const ETAPAS = [
   { n: "03", nome: "Conectar", desc: "Sistemas e dados" },
   { n: "04", nome: "Automatizar", desc: "Tarefas repetitivas" },
   { n: "05", nome: "Visualizar", desc: "Indicadores e dashboards" },
-  { n: "06", nome: "Acompanhar", desc: "Performance e resultados" },
+  { n: "06", nome: "Acompanhar", desc: "Vendas e resultados" },
   { n: "07", nome: "Clareza", desc: "Na sua operação", destaque: true },
 ];
 

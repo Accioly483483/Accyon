@@ -7,7 +7,7 @@ export const PROCESSO = [
   { nome: "Planejamento", texto: "Criamos uma estratégia personalizada." },
   { nome: "Desenvolvimento", texto: "Colocamos tudo em prática com excelência." },
   { nome: "Entrega e Implementação", texto: "Testamos, ajustamos e colocamos on-line." },
-  { nome: "Suporte contínuo", texto: "Acompanhamos, otimizamos e escalamos resultados." },
+  { nome: "Suporte contínuo", texto: "Acompanhamos, otimizamos e escalamos vendas e resultados." },
 ];
 
 export interface Etapa {
@@ -78,7 +78,7 @@ export const ETAPAS: Etapa[] = [
 export const FAQ: [string, string][] = [
   [
     "O que a Accyon faz?",
-    "A Accyon estrutura operações comerciais e empresariais, organizando processos e construindo CRM, automações, integrações, dashboards e sistemas sob medida.",
+    "A Accyon estrutura operações de vendas e de gestão, organizando processos e construindo CRM, automações, integrações, dashboards e sistemas sob medida.",
   ],
   [
     "A Accyon é uma empresa de automação?",
