@@ -1,21 +1,20 @@
-import { AdminLeads } from "@/components/admin/AdminLeads";
+import { AdminKanban } from "@/components/admin/AdminKanban";
 import { requireAdmin } from "@/lib/require-admin";
 import { listLeads } from "@/lib/db-leads";
 
 export const dynamic = "force-dynamic";
 
-export default async function AdminPage() {
+export default async function KanbanPage() {
   await requireAdmin();
-  // Leitura via service_role (server, atrás do middleware). RLS não muda.
   const { leads, error } = await listLeads();
 
   return (
     <>
       <h1 className="text-[1.4rem] font-bold tracking-[-0.01em] text-[var(--ink)]">
-        Leads
+        Kanban
       </h1>
       <p className="mt-1 text-[0.85rem] text-[var(--ink-2)]">
-        Capturas dos formulários das landing pages.
+        Funil das leads. Arraste o card ou troque a etapa no seletor.
       </p>
 
       {error ? (
@@ -23,7 +22,7 @@ export default async function AdminPage() {
           Não foi possível carregar as leads: {error.message}
         </p>
       ) : (
-        <AdminLeads leads={leads} />
+        <AdminKanban leads={leads} />
       )}
     </>
   );

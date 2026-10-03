@@ -10,6 +10,7 @@ import { Pipoca } from "@/components/Pipoca";
 import { JsonLd } from "@/components/JsonLd";
 import type { Metadata } from "next";
 import { graph, webPageNode } from "@/lib/schema";
+import { PROCESSO } from "@/content/home";
 
 /* Copy: "Copy - site - Accyon.docx" (blueprint da Home). Tom pela lista
    permitido/proibido do Brand Book. Sem travessão, aspas curvas. */
@@ -178,13 +179,6 @@ function Infraestrutura() {
 }
 
 /* ===================== COMO FUNCIONA (processo) ===================== */
-const PROCESSO = [
-  { nome: "Diagnóstico", texto: "Entendemos seu negócio, desafios e objetivos." },
-  { nome: "Planejamento", texto: "Criamos uma estratégia personalizada." },
-  { nome: "Desenvolvimento", texto: "Colocamos tudo em prática com excelência." },
-  { nome: "Entrega e Implementação", texto: "Testamos, ajustamos e colocamos on-line." },
-  { nome: "Suporte contínuo", texto: "Acompanhamos, otimizamos e escalamos resultados." },
-];
 
 function Frentes() {
   return (

@@ -1,6 +1,15 @@
 /* Dados da Home reaproveitados pelo schema (HowTo, FAQPage). Ficam fora do
    page.tsx porque o Next 15 não permite export nomeado arbitrário em page. */
 
+/* Processo exibido na Home ("Nosso processo") e repetido no /llms-full.txt. */
+export const PROCESSO = [
+  { nome: "Diagnóstico", texto: "Entendemos seu negócio, desafios e objetivos." },
+  { nome: "Planejamento", texto: "Criamos uma estratégia personalizada." },
+  { nome: "Desenvolvimento", texto: "Colocamos tudo em prática com excelência." },
+  { nome: "Entrega e Implementação", texto: "Testamos, ajustamos e colocamos on-line." },
+  { nome: "Suporte contínuo", texto: "Acompanhamos, otimizamos e escalamos resultados." },
+];
+
 export interface Etapa {
   n: string;
   nome: string;

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/Section";
+import { Reveal } from "@/components/Reveal";
+import { SolucaoCard } from "@/components/SolucaoCard";
 import { JsonLd } from "@/components/JsonLd";
 import { SOLUCOES } from "@/content/solucoes";
 import { graph, webPageNode, breadcrumbNode } from "@/lib/schema";
@@ -7,7 +9,7 @@ import { graph, webPageNode, breadcrumbNode } from "@/lib/schema";
 export const metadata: Metadata = {
   title: { absolute: "Soluções | Accyon" },
   description:
-    "Ecossistemas comerciais e operacionais, softwares sob medida, dashboards, sites, automações, atendimento automatizado, disparos e assistentes de IA.",
+    "Ecossistemas comerciais, CRMs e painéis sob medida, dashboards, automações, disparos de WhatsApp e agentes de IA. Veja como a Accyon organiza sua operação.",
   alternates: { canonical: "/solucoes" },
   openGraph: {
     title: "Soluções | Accyon",
@@ -32,34 +34,18 @@ export default function Solucoes() {
           ),
         ])}
       />
-      <Section eyebrow="Soluções" title="O que a Accyon constrói.">
-        <nav aria-label="Soluções">
-          <ul className="grid gap-x-8 gap-y-2 sm:grid-cols-2">
-            {SOLUCOES.map((s) => (
-              <li key={s.slug}>
-                <a href={`#${s.slug}`} className="text-corpo text-ink-2 transition-colors hover:text-sinal">
-                  {s.nome}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+      {/* Cards numerados (visual do "Nosso processo"); texto de cada um em pop-up. */}
+      <Section
+        eyebrow="Soluções"
+        title="Tudo o que sua operação precisa para funcionar melhor."
+        intro="Da estrutura comercial às automações do dia a dia: ferramentas e processos que fazem sua empresa ganhar clareza, velocidade e autonomia."
+      >
+        <Reveal as="ol" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {SOLUCOES.map((s, i) => (
+            <SolucaoCard key={s.slug} s={s} n={i + 1} />
+          ))}
+        </Reveal>
       </Section>
-
-      {SOLUCOES.map((s, i) => (
-        <section
-          key={s.slug}
-          id={s.slug}
-          className={`scroll-mt-24 border-t border-line py-16 md:py-20 ${i % 2 === 0 ? "bg-surface" : ""}`}
-        >
-          <div className="container-accyon">
-            <p className="mono text-legenda text-sinal">{String(i + 1).padStart(2, "0")}</p>
-            <h2 className="mt-3 max-w-measure text-subtitulo font-medium text-ink">{s.nome}</h2>
-            {/* TODO(usuário): texto detalhado desta solução */}
-            <p className="mt-4 max-w-measure text-corpo text-ink-2">[Texto a definir]</p>
-          </div>
-        </section>
-      ))}
     </>
   );
 }

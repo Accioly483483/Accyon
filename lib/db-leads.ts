@@ -44,6 +44,15 @@ export async function findDuplicate(
   return (data?.[0] as Lead) ?? null;
 }
 
+/** Todas as leads, mais novas primeiro. Uso do painel (server, service_role). */
+export async function listLeads() {
+  const { data, error } = await supabaseAdmin
+    .from("accyon_leads")
+    .select("*")
+    .order("created_at", { ascending: false });
+  return { leads: (data ?? []) as Lead[], error };
+}
+
 export async function saveLead(input: LeadInput): Promise<Lead> {
   const { data, error } = await supabaseAdmin
     .from("accyon_leads")

@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import {
   Monitor,
+  User,
+  ClipboardList,
   Download,
   Search,
   X,
@@ -12,6 +14,12 @@ import {
   Tag,
 } from "lucide-react";
 import type { Lead } from "@/lib/db-leads";
+import { statusLabel } from "@/lib/lead-status";
+
+/** Rótulos das chaves de `respostas`; chave sem rótulo aparece crua. */
+const RESPOSTA_LABEL: Record<string, string> = {
+  melhoria: "O que gostaria que fosse diferente",
+};
 
 const PAGE_SIZE = 25;
 
@@ -29,7 +37,7 @@ const fmtDateTime = (iso: string) =>
     hour: "2-digit",
     minute: "2-digit",
   });
-const fmtPhone = (d: string) => {
+export const fmtPhone = (d: string) => {
   const n = String(d ?? "").replace(/\D/g, "");
   if (n.length === 11) return `(${n.slice(0, 2)}) ${n.slice(2, 7)}-${n.slice(7)}`;
   if (n.length === 10) return `(${n.slice(0, 2)}) ${n.slice(2, 6)}-${n.slice(6)}`;
@@ -124,6 +132,7 @@ export function AdminLeads({ leads }: { leads: Lead[] }) {
       "Empresa",
       "Origem",
       "Servicos",
+      "Status",
       "UTM Source",
       "UTM Medium",
       "UTM Campaign",
@@ -146,6 +155,7 @@ export function AdminLeads({ leads }: { leads: Lead[] }) {
           l.empresa,
           l.form_slug,
           (l.servicos ?? []).join(" | "),
+          statusLabel(l.status),
           l.utms?.utm_source ?? "",
           l.utms?.utm_medium ?? "",
           l.utms?.utm_campaign ?? "",
@@ -273,13 +283,14 @@ export function AdminLeads({ leads }: { leads: Lead[] }) {
               <th className="px-3 py-2.5 font-medium">E-mail</th>
               <th className="px-3 py-2.5 font-medium">WhatsApp</th>
               <th className="px-3 py-2.5 font-medium">Serviços</th>
+              <th className="px-3 py-2.5 font-medium">Status</th>
               <th className="px-3 py-2.5" />
             </tr>
           </thead>
           <tbody>
             {rows.length === 0 && (
               <tr>
-                <td colSpan={8} className="px-3 py-10 text-center text-[var(--ink-2)]">
+                <td colSpan={9} className="px-3 py-10 text-center text-[var(--ink-2)]">
                   Nenhuma lead com esses filtros.
                 </td>
               </tr>
@@ -306,10 +317,13 @@ export function AdminLeads({ leads }: { leads: Lead[] }) {
                 <td className="px-3 py-2.5 text-[var(--ink-2)]">
                   {(l.servicos ?? []).length}
                 </td>
+                <td className="whitespace-nowrap px-3 py-2.5 text-[var(--ink-2)]">
+                  {statusLabel(l.status)}
+                </td>
                 <td className="px-3 py-2.5 text-right">
                   <button
                     onClick={() => setDetail(l)}
-                    aria-label="Inteligência técnica"
+                    aria-label="Detalhes da lead"
                     className="rounded-[8px] p-1.5 text-[var(--ink-3)] hover:bg-[var(--surface-3)] hover:text-[var(--ink)]"
                   >
                     <Monitor size={15} />
@@ -392,7 +406,7 @@ function Th({
   );
 }
 
-function TechModal({ lead, onClose }: { lead: Lead; onClose: () => void }) {
+export function TechModal({ lead, onClose }: { lead: Lead; onClose: () => void }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -407,9 +421,10 @@ function TechModal({ lead, onClose }: { lead: Lead; onClose: () => void }) {
 
   const m = (lead.metadata ?? {}) as Record<string, string>;
   const utms = Object.entries(lead.utms ?? {});
-  const melhoria = (lead.respostas as Record<string, unknown>)?.melhoria as
-    | string
-    | undefined;
+  const respostas = Object.entries(lead.respostas ?? {}).filter(
+    ([, v]) => String(v ?? "").trim() !== "",
+  );
+  const wa = String(lead.whatsapp ?? "").replace(/\D/g, "");
 
   return (
     <div
@@ -422,7 +437,7 @@ function TechModal({ lead, onClose }: { lead: Lead; onClose: () => void }) {
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
-        aria-label="Inteligência técnica da lead"
+        aria-label="Detalhes da lead"
       >
         <div className="flex items-start justify-between">
           <div>
@@ -442,6 +457,41 @@ function TechModal({ lead, onClose }: { lead: Lead; onClose: () => void }) {
           </button>
         </div>
 
+        <Section icon={<User size={14} />} title="Contato">
+          <Field label="Nome">{lead.nome}</Field>
+          <Field label="WhatsApp">
+            <a
+              href={`https://wa.me/${wa.length <= 11 ? "55" + wa : wa}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--sinal)] hover:underline"
+            >
+              {fmtPhone(lead.whatsapp)}
+            </a>
+          </Field>
+          <Field label="E-mail">
+            <a href={`mailto:${lead.email}`} className="break-all text-[var(--sinal)] hover:underline">
+              {lead.email}
+            </a>
+          </Field>
+          <Field label="Empresa">{lead.empresa}</Field>
+          <Field label="Origem">{lead.form_slug}</Field>
+          <Field label="Status">{statusLabel(lead.status)}</Field>
+        </Section>
+        <Section icon={<ClipboardList size={14} />} title="Serviços de interesse">
+          <ul className="list-inside list-disc text-[var(--ink)]">
+            {(lead.servicos ?? []).map((s) => (
+              <li key={s}>{s}</li>
+            ))}
+          </ul>
+        </Section>
+        {respostas.map(([k, v]) => (
+          <Section key={k} title={RESPOSTA_LABEL[k] ?? k}>
+            <p className="whitespace-pre-wrap text-[var(--ink)]">
+              {typeof v === "string" ? v : JSON.stringify(v)}
+            </p>
+          </Section>
+        ))}
         <Section icon={<MapPin size={14} />} title="Geolocalização">
           <p className="text-[var(--ink)]">{m.location || "—"}</p>
           <p className="text-[0.75rem] text-[var(--ink-3)]">IP {m.ip || "—"}</p>
@@ -471,18 +521,6 @@ function TechModal({ lead, onClose }: { lead: Lead; onClose: () => void }) {
             ))
           )}
         </Section>
-        <Section title="Serviços de interesse">
-          <ul className="list-inside list-disc text-[var(--ink)]">
-            {(lead.servicos ?? []).map((s) => (
-              <li key={s}>{s}</li>
-            ))}
-          </ul>
-        </Section>
-        {melhoria && (
-          <Section title="O que gostaria que fosse diferente">
-            <p className="text-[var(--ink)]">{melhoria}</p>
-          </Section>
-        )}
       </div>
     </div>
   );
@@ -505,5 +543,14 @@ function Section({
       </h3>
       <div className="mt-1.5 space-y-0.5 text-[0.85rem]">{children}</div>
     </div>
+  );
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <p className="flex gap-2">
+      <span className="w-20 shrink-0 text-[var(--ink-3)]">{label}</span>
+      <span className="min-w-0 text-[var(--ink)]">{children || "—"}</span>
+    </p>
   );
 }
