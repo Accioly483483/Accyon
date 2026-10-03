@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 const WHATSAPP_URL = "https://wa.me/5521979700821";
-const EMAIL = "accioly483@gmail.com";
+const EMAIL = "m.accioly@accioly483.cloud";
 
 const iconeLink =
   "grid size-10 place-items-center rounded-full border border-line-2 text-ink-2 transition-colors hover:border-sinal hover:text-sinal";

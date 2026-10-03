@@ -26,7 +26,7 @@ const nextConfig: NextConfig = {
       ["infraestrutura-comercial", "ecossistema-comercial-operacional"],
       ["sistemas", "desenvolvimento-de-softwares"],
       ["atendimento-automatizado", "atendimento-automatizado"],
-      ["gestao-de-automacoes", "gestao-de-automacoes"],
+      ["gestao-de-automacoes", "automacoes-sob-medida"],
       ["criacao-de-paginas", "sites-paginas-e-bio"],
     ].map(([de, para]) => ({
       source: `/${de}`,

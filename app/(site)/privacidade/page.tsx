@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 // Dados confirmados pelo titular. Recomendável revisão jurídica do texto.
 const CNPJ = "66.008.856/0001-11";
-const EMAIL_ENCARREGADO = "accioly483@gmail.com";
+const EMAIL_ENCARREGADO = "m.accioly@accioly483.cloud";
 const ATUALIZADO_EM = "7 de setembro de 2026";
 
 function Bloco({ n, titulo, children }: { n: string; titulo: string; children: React.ReactNode }) {

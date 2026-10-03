@@ -36,7 +36,7 @@ export function organizationNode() {
     url: url("/"),
     description:
       "Consultoria de infraestrutura operacional e comercial para pequenas e médias empresas: organiza processos, conecta sistemas, automatiza tarefas e entrega dashboards.",
-    email: "accioly483@gmail.com",
+    email: "m.accioly@accioly483.cloud",
     telephone: "+55 21 97970-0821",
     taxID: "66.008.856/0001-11",
     areaServed: { "@type": "Country", name: "Brasil" },
@@ -49,7 +49,7 @@ export function personNode() {
   return {
     "@type": "Person",
     "@id": PERSON_ID,
-    name: "Matheus A.",
+    name: "Matheus Accioly",
     jobTitle: "Gestor de Automações",
     worksFor: { "@id": ORG_ID },
     knowsAbout: [
